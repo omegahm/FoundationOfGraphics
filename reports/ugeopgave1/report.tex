@@ -1,6 +1,7 @@
 \documentclass[a4paper, 10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[danish]{babel}
+\usepackage{verbatim}
 
 \title{Fundations of Computer Graphics\\ Ugeopgave 1}
 \author{Mads Ohm Larsen}
@@ -11,7 +12,7 @@
 \section{Installtion af \texttt{Framework}}
 Denne første del gøres meget kort.
 Installation på en Linux maskine (Ubuntu Karmic Koala) foregik meget smertefrit, ved at downloade den givne zip-fil og pakke den ud.
-Her efter køres\\ 
+Herefter køres\\ 
 
 \noindent \texttt{ohm@amanda:\textasciitilde/projects/grafik\$ cmake GraphicsProject/}\\
 
@@ -31,5 +32,48 @@ Linking CXX executable framework
 Vi har nu installeret \texttt{Framework}, og kan kører dette med \texttt{./framework}.
 
 \section{"Code-digging"}
+I dette afsnit vil jeg kort forklare hvordan \texttt{drawPoint} funktionen fra \texttt{main.cpp} fungerere.
+Formålet med dette er at komme tættere på koden og få et indblik i hvordan dette \texttt{framework} hænger sammen.
+
+\texttt{drawPoint} funktionen løber følgende igennem:
+
+\begin{enumerate}
+\item Lader \texttt{render\_pipeline} indlæse \texttt{point\_rasterizer}
+\item Sætter værdier for en firkant
+    \begin{itemize}
+    \item Her bliver sat en \texttt{x\_start} og en \texttt{x\_width}, som tilsamme giver en \texttt{x\_stop}. 
+    \item Dette er en afgrænsning af en linie, og når vi gør dette med \texttt{y} også, er det en kasse. 
+    \item I vores tilfælde bliver denne sat til at firkanten starter i $(150, 200)$ og slutter i $(550, 600)$\footnote{Øverste venstre hjørne er $(0,0)$}
+    \end{itemize}
+\item Der bliver sat en dybde (her $0.5$)
+\item Gennemløber alle $(x,y)$ værdier i et dobbelt for-loop og laver en \texttt{vector3\_type} for hvert par.
+\item Kalder \texttt{draw\_point} metoden hos \texttt{render\_pipeline} med farven gul
+\item Det samme bliver gjort igen, denne gang for en firkant i $(250, 100)$ til $(750, 500)$ og i rød.
+\end{enumerate}
+
+Det gik jo nemt at få tegnet to firkanter, men hvad er det egenligt at \texttt{draw\_point} metoden hos rasterizeren gør?
+Denne metode tager imod alle punkterne, samt farverne, der bliver tegnet.
+Inde i selve \texttt{draw\_point} metoden hos pipelinen sker følgende:
+
+\begin{enumerate}
+\item Tjekker at vi har et \texttt{vertex\_program}, en \texttt{rasterizer} og et \texttt{fragment\_program}
+\item Opretter output vektorer
+\item Kalder \texttt{run} metoden hos \texttt{vertex\_program}. Denne tager imod den nuværende \texttt{state} i pipelinen, samt in- og output vektorer for koordinater og farver
+\item Den kalder herefter \texttt{init}, hvis eneste opgave er at sætte nogle variable og sørger for at nulnormalen (\texttt{zero\_normal}) er nul. Den sætter også \texttt{valid} til sand, hvilket fortæller de andre metoder at \texttt{rasterizeren} er blevet initializeret
+\item Så løber den alle fragmenter igennem, ved at spørge om der er \texttt{more\_fragments}
+    \begin{itemize}
+    \item Er der flere fragmenter, ser den på hvor de skal sidde (koordinater)
+    \item Herefter tjekker den om vi overhovedet kan se dette fragment. Dette gøres med \texttt{ztest}
+    \item Hvis vi kan se den, spørger vi \texttt{fragment\_program} hvilken farve den skal have
+    \item Herefter indlæser vi den i z-bufferen, således at denne måske kan skygge for andre
+    \item Og til sidst sender vi den til framebufferen med metoden hos pipelinen \texttt{write\_pixel\_to\_frame\_buffer}
+    \end{itemize}
+\end{enumerate}
+
+Vi mangler nu kun at kigge på hvordan framebufferen tegner pixelen.
+For at kigge på det dette, skal vi lidt længere tilbage, end hvor vi startede.
+Vi skal kigge på hvornår \texttt{drawPoint()} bliver kaldt.
+Dette sker når en person trykker på "p" på hans/hendes tastatur.
+Når dette sker kalder vi nemlig både funktionen \texttt{drawPoint()}, men vi kalder også \texttt{flush()} metoden hos pipelinen og det er denne der sørger for at alle de pixels vi har samlet til framebufferen, bliver skrevet ud på skærmen.
 
 \end{document}
