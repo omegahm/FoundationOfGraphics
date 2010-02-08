@@ -1,0 +1,35 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+
+\title{Fundations of Computer Graphics\\ Ugeopgave 1}
+\author{Mads Ohm Larsen}
+
+\begin{document}
+\maketitle
+
+\section{Installtion af \texttt{Framework}}
+Denne første del gøres meget kort.
+Installation på en Linux maskine (Ubuntu Karmic Koala) foregik meget smertefrit, ved at downloade den givne zip-fil og pakke den ud.
+Her efter køres\\ 
+
+\noindent \texttt{ohm@amanda:\textasciitilde/projects/grafik\$ cmake GraphicsProject/}\\
+
+\noindent Denne viser hvad den laver, her generere den \texttt{make}-filen og tjekker at alt er som det skal være.
+Vi kan nu kører\\
+
+\noindent \texttt{ohm@amanda:\textasciitilde/projects/grafik\$ make clean all}\\
+
+\noindent Som har følgende output:
+\begin{verbatim}
+Scanning dependencies of target framework
+[100%] Building CXX object CMakeFiles/framework.dir/src/main.o
+Linking CXX executable framework
+[100%] Built target framework
+\end{verbatim}
+
+Vi har nu installeret \texttt{Framework}, og kan kører dette med \texttt{./framework}.
+
+\section{"Code-digging"}
+
+\end{document}

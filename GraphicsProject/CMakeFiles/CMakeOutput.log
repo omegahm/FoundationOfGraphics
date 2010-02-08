@@ -1,0 +1,917 @@
+The system is: Linux - 2.6.24-gentoo-r4 - Intel(R) Core(TM)2 CPU T7200 @ 2.00GHz
+Determining if the C compiler is GNU succeeded with the following output:
+# 1 "/usr/share/cmake/Modules/CMakeTestGNU.c"
+# 1 "<built-in>"
+# 1 "<command line>"
+# 1 "/usr/share/cmake/Modules/CMakeTestGNU.c"
+
+void THIS_IS_GNU();
+
+Determining if the C++ compiler is GNU succeeded with the following output:
+# 1 "/usr/share/cmake/Modules/CMakeTestGNU.c"
+# 1 "<built-in>"
+# 1 "<command line>"
+# 1 "/usr/share/cmake/Modules/CMakeTestGNU.c"
+
+void THIS_IS_GNU();
+
+Determining if the C compiler works passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/testCCompiler.o
+/usr/bin/gcc   -o CMakeFiles/cmTryCompileExec.dir/testCCompiler.o   -c /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/gcc        -fPIC "CMakeFiles/cmTryCompileExec.dir/testCCompiler.o"   -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Determining size of void* passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckTypeSize.o
+/usr/bin/gcc   -o CMakeFiles/cmTryCompileExec.dir/CheckTypeSize.o   -c /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CheckTypeSize.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/gcc        -fPIC "CMakeFiles/cmTryCompileExec.dir/CheckTypeSize.o"   -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Determining if the CXX compiler works passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.o
+/usr/bin/c++    -o CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.o -c /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/c++         -fPIC "CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.o"   -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib64/libX11.so;/usr/lib64/libXext.so passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/gcc      -DCHECK_FUNCTION_EXISTS=XOpenDisplay  -fPIC "CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o"   -o cmTryCompileExec -rdynamic -lX11 -lXext 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/gcc      -DCHECK_FUNCTION_EXISTS=gethostbyname  -fPIC "CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o"   -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/gcc      -DCHECK_FUNCTION_EXISTS=connect  -fPIC "CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o"   -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/gcc      -DCHECK_FUNCTION_EXISTS=remove  -fPIC "CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o"   -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/gcc      -DCHECK_FUNCTION_EXISTS=shmat  -fPIC "CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o"   -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -P CMakeFiles/cmTryCompileExec.dir/cmake_clean_target.cmake
+/usr/bin/gcc      -DCHECK_FUNCTION_EXISTS=IceConnectionNumber  -fPIC "CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.o"   -o cmTryCompileExec -rdynamic -lICE 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/gcc 
+Build flags: ;
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: ;
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc        -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++         -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/Project/CMakeFiles/CMakeTmp'
+
+
+The system is: Linux - 2.6.30-gentoo-r4 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/gcc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+CMakeCXXCompilerId.cpp:67: warning: deprecated conversion from string constant to ‘char*’
+CMakeCXXCompilerId.cpp:157: warning: deprecated conversion from string constant to ‘char*’
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o   -c /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc       -fPIC CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc       -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o -c /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib64/libX11.so;/usr/lib64/libXext.so passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=XOpenDisplay  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic -lX11 -lXext 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=gethostbyname  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=connect  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=remove  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=shmat  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=IceConnectionNumber  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic -lICE 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+The system is: Linux - 2.6.30-gentoo-r4 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/gcc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+CMakeCXXCompilerId.cpp:67: warning: deprecated conversion from string constant to ‘char*’
+CMakeCXXCompilerId.cpp:157: warning: deprecated conversion from string constant to ‘char*’
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o   -c /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc       -fPIC CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o  -o cmTryCompileExec -rdynamic 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc       -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec -rdynamic 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o -c /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec -rdynamic 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec -rdynamic 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib64/libX11.so;/usr/lib64/libXext.so passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=XOpenDisplay  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic -lX11 -lXext 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=gethostbyname  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=connect  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=remove  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=shmat  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[2]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=IceConnectionNumber  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic -lICE 
+gmake[2]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+The system is: Linux - 2.6.30-gentoo-r4 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/gcc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+CMakeCXXCompilerId.cpp:67: warning: deprecated conversion from string constant to ‘char*’
+CMakeCXXCompilerId.cpp:157: warning: deprecated conversion from string constant to ‘char*’
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o   -c /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc       -fPIC CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc       -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o -c /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib64/libX11.so;/usr/lib64/libXext.so passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=XOpenDisplay  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic -lX11 -lXext 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=gethostbyname  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=connect  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=remove  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=shmat  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=IceConnectionNumber  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic -lICE 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/GraphicsProject/CMakeFiles/CMakeTmp'
+
+
+The system is: Linux - 2.6.30-gentoo-r4 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/gcc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+CMakeCXXCompilerId.cpp:67: warning: deprecated conversion from string constant to ‘char*’
+CMakeCXXCompilerId.cpp:157: warning: deprecated conversion from string constant to ‘char*’
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o   -c /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc       -fPIC CMakeFiles/cmTryCompileExec.dir/testCCompiler.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc       -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o -c /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/c++        -fPIC CMakeFiles/cmTryCompileExec.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib64/libX11.so;/usr/lib64/libXext.so passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=XOpenDisplay  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic -lX11 -lXext 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=gethostbyname  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=connect  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=remove  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=shmat  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec.dir/build.make CMakeFiles/cmTryCompileExec.dir/build
+gmake[1]: Entering directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec.dir/link.txt --verbose=1
+/usr/bin/gcc     -DCHECK_FUNCTION_EXISTS=IceConnectionNumber  -fPIC CMakeFiles/cmTryCompileExec.dir/CheckFunctionExists.c.o  -o cmTryCompileExec -rdynamic -lICE 
+gmake[1]: Leaving directory `/home/kaiip/Teaching/FoundationsOfGraphics/RawProject/CMakeFiles/CMakeTmp'
+
+
