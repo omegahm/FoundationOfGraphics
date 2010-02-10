@@ -97,29 +97,50 @@ namespace graphics {
 	{
 	    // This is a line rasterizer
 	    // The vertices are in 3D screen coordinates
+	    this->x_start   = in_vertex1[1];
+	    this->y_start   = in_vertex1[2];
+	    
+	    this->x_stop    = in_vertex2[1];
+	    this->y_stop    = in_vertex2[2];
 
+	    this->x_current = this->x_start;
+	    this->y_current = this->y_start;
+
+	    this->dx	    = this->x_stop - this->x_start;
+	    this->dy	    = this->y_stop - this->y_start;
+
+	    this->abs_2dx   = std::abs( this->dx ) << 1; // 2 * |dx|
+	    this->abs_2dy   = std::abs( this->dy ) << 1; // 2 * |dy|
+
+	    this->x_step    = ( this->dx < 0 ) ? -1 : 1;
+	    this->y_step    = ( this->dy < 0 ) ? -1 : 1;
+
+	    this->color_start = in_color1;
+	    this->color_stop  = in_color2;
+	    
 	    // Determine if the line is x-dominat or y-dominant
-	    // if (?) {
+	    if ( this->abs_2dx > this->abs_2dy )
+	    {
 		// The line is x-dominant
+		this->left_right = ( this->x_step > 0 );
+		this->d          = this->abs_2dy - ( this->abs_2dx >> 1 );
+		this->valid      = ( this->x_start != this->x_stop );
 
-		// Set up a pointer for the inner-loop for an x-donmiant line
-		// This is a pointer to a private member function!
-		// Therefore it looks very strange, but this is how to do it!
-		
-	        // this->innerloop = &MyLineRasterizer::x_dominant_innerloop;
-	    //}
-	    //else {
+		this->innerloop = &MyLineRasterizer::x_dominant_innerloop;
+	    }
+	    else {
 		// The line is y-dominant
+		this->left_right = ( this->y_step > 0 );
+		this->d          = this->abs_2dx - ( this->abs_2dy >> 1 );
+		this->valid      = ( this->y_start != this->y_stop );
 
-                // Set up a pointer for the inner-loop for a y-donmiant line
-		// This is a pointer to a private member function!
-		// Therefore it looks very strange, but this is how to do it!
-
-		// this->innerloop = &MyLineRasterizer::y_dominant_innerloop;
-	    //}
+		this->innerloop = &MyLineRasterizer::y_dominant_innerloop;
+	    }
 
 	    this->Debug = false;
 	    this->valid = true;
+
+	    this->color_current = in_color1;
 	}
 
 
@@ -162,7 +183,7 @@ namespace graphics {
 	    if (!this->valid) {
 		throw std::runtime_error("MyLineRasterizer::x():Invalid State/Not Initialized");
 	    }
-	    return 0;     
+	    return this->x_current;     
 	}
 
 
@@ -177,7 +198,7 @@ namespace graphics {
 	    if (!this->valid) {
 		throw std::runtime_error("MyLineRasterizer::y():Invalid State/Not Initialized");
 	    }
-	    return 0;
+	    return this->y_current;
 	}
 
 
@@ -237,7 +258,7 @@ namespace graphics {
 	    if (!this->valid) {
 		throw std::runtime_error("MyLineRasterizer::color():Invalid State/Not Initialized");
 	    }
-	    return this->dummy_vector;
+	    return this->color_current;
 	}
 
 
@@ -264,7 +285,7 @@ namespace graphics {
 	    //         rasterizer->next_fragment();
 	    //    }
 
-	    return false;
+	    return this->valid;
 	}
 
 
@@ -314,7 +335,21 @@ namespace graphics {
 \*******************************************************************/
 
 	void x_dominant_innerloop()
-	{}
+	{
+	    if ( this->x_current == this->x_stop ) 
+	    {
+		this->valid = false;
+	    } else 
+	    {
+		if ( ( this->d > 0 ) || ( ( this->d == 0 ) && this->left_right ) ) 
+		{
+		    this->y_current += this->y_step;
+		    this->d         -= this->abs_2dx;
+		}
+		this->x_current += this->x_step;
+		this->d         += this->abs_2dy;
+	    }
+	}
 
 
 /*******************************************************************\
@@ -324,7 +359,21 @@ namespace graphics {
 \*******************************************************************/
 
 	void y_dominant_innerloop()
-	{}
+	{
+	    if ( this->y_current == this->y_stop ) 
+	    {
+		this->valid = false;
+	    } else 
+	    {
+		if ( ( this->d > 0 ) || ( ( this->d == 0 ) && this->left_right ) ) 
+		{
+		    this->x_current += this->x_step;
+		    this->d         -= this->abs_2dy;
+		}
+		this->y_current += this->y_step;
+		this->d         += this->abs_2dx;
+	    }
+	}
 
 
 /*******************************************************************\
@@ -342,6 +391,32 @@ namespace graphics {
 	bool         Debug;
 
 	vector3_type dummy_vector;
+	
+	vector3_type color_start;
+	vector3_type color_stop;
+	vector3_type color_current;
+
+	int	     x_start;
+	int	     x_stop;
+
+	int	     y_start;
+	int	     y_stop;
+
+	int	     x_current;
+	int	     y_current;
+
+	int	     x_step;
+	int	     y_step;
+	
+	int	     abs_2dx;
+	int	     abs_2dy;
+
+	int	     d;
+
+	int	     dx;
+	int	     dy;
+
+	bool	     left_right;
     };
 
 }// end namespace graphics

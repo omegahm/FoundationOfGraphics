@@ -956,12 +956,12 @@ void display()
     // >> TODO USE YOUR SOFTWARE RENDERPIPEINE TO DRAW << 
 
 #ifdef KENNY_ZBUFFER
-    MyMathTypes::real_type     infinty  =  1.0;
+    MyMathTypes::real_type     infinity =  1.0;
 #else
     MyMathTypes::real_type     infinity = -1.0;
 #endif
 
-    MyMathTypes::vector3_type  color( 0.0, 0.0, 1.0 );   // Blue Screen of Death Color
+    MyMathTypes::vector3_type  color( 1.0, 0.0, 0.0 );   // Red Screen of Death Color
     
     //  camera.set_model_view( ...... );
     //  camera.set_projection( ...... );
@@ -1112,7 +1112,7 @@ int main( int argc, char **argv )
 	glutInitDisplayMode( GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE | GLUT_STENCIL);
 	glutInitWindowSize( winWidth, winHeight );
 	glutInitWindowPosition( 50, 50 );
-	glutCreateWindow( "Blue Screen of Death" );
+	glutCreateWindow( "Red Screen of Death" );
     
 	glClearColor( 1, 1, 1, 0 );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
