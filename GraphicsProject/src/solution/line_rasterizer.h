@@ -106,17 +106,18 @@ namespace graphics {
 	    this->x_current = this->x_start;
 	    this->y_current = this->y_start;
 
-	    this->dx	    = this->x_stop - this->x_start;
-	    this->dy	    = this->y_stop - this->y_start;
+	    int dx	    = this->x_stop - this->x_start;
+	    int dy	    = this->y_stop - this->y_start;
 
-	    this->abs_2dx   = std::abs( this->dx ) << 1; // 2 * |dx|
-	    this->abs_2dy   = std::abs( this->dy ) << 1; // 2 * |dy|
+	    this->abs_2dx   = std::abs( dx ) << 1; // 2 * |dx|
+	    this->abs_2dy   = std::abs( dy ) << 1; // 2 * |dy|
 
-	    this->x_step    = ( this->dx < 0 ) ? -1 : 1;
-	    this->y_step    = ( this->dy < 0 ) ? -1 : 1;
+	    this->x_step    = ( dx < 0 ) ? -1 : 1;
+	    this->y_step    = ( dy < 0 ) ? -1 : 1;
 
-	    this->color_start = in_color1;
-	    this->color_stop  = in_color2;
+	    this->color_start   = in_color1;
+	    this->color_stop    = in_color2;
+	    this->color_current = color_start;
 	    
 	    // Determine if the line is x-dominat or y-dominant
 	    if ( this->abs_2dx > this->abs_2dy )
@@ -140,7 +141,6 @@ namespace graphics {
 	    this->Debug = false;
 	    this->valid = true;
 
-	    this->color_current = in_color1;
 	}
 
 
@@ -375,7 +375,6 @@ namespace graphics {
 	    }
 	}
 
-
 /*******************************************************************\
 *                                                                   *
 *                 P r i v a t e   V a r i a b l e s                 *
@@ -412,9 +411,6 @@ namespace graphics {
 	int	     abs_2dy;
 
 	int	     d;
-
-	int	     dx;
-	int	     dy;
 
 	bool	     left_right;
     };

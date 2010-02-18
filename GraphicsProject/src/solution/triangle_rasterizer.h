@@ -16,7 +16,6 @@
 
 
 namespace graphics {
-
     template<typename math_types>
     class MyTriangleRasterizer : public Rasterizer<math_types>
     {
@@ -47,7 +46,113 @@ namespace graphics {
 		   vector3_type const& in_color3) 
 	{
 	    // This is a triangle rasterizer
-	    // Save the original parameters
+	    this->vertices[0] = in_vertex1;
+	    this->vertices[1] = in_vertex2;
+	    this->vertices[2] = in_vertex3;
+
+            this->normals[0]  = in_normal1; 
+            this->normals[1]  = in_normal2; 
+            this->normals[2]  = in_normal3; 
+            
+            this->colors[0]   = in_color1; 
+            this->colors[1]   = in_color2; 
+            this->colors[2]   = in_color3; 
+            
+	    int ulindex       = this->UpperLeft();
+            int ulx           = this->vertices[ulindex][1];
+            int uly           = this->vertices[ulindex][2];
+             
+            int llindex       = this->LowerLeft();
+            int llx           = this->vertices[llindex][1];
+            int lly           = this->vertices[llindex][2];
+            
+            int otherindex    = 3 - llindex - ulindex;
+            int otherx        = this->vertices[otherindex][1];
+            int othery        = this->vertices[otherindex][2];
+	    this->the_other   = otherindex;
+ 	    
+
+            /**
+             * What type are we???
+             */
+            if( lly == othery ) {
+	        this->left.init( this->vertices[llindex],
+                                 this->normals[llindex],
+                                 this->colors[llindex],
+                                 this->vertices[ulindex],
+                                 this->normals[ulindex],
+                                 this->colors[ulindex] );
+
+                this->right.init( this->vertices[otherindex],
+                                  this->normals[otherindex],
+                                  this->colors[otherindex],
+                                  this->vertices[ulindex],
+                                  this->normals[ulindex],
+                                  this->colors[ulindex] );
+            } else if( uly == othery ) {
+	        this->left.init( this->vertices[llindex],
+                                 this->normals[llindex],
+                                 this->colors[llindex],
+                                 this->vertices[ulindex],
+                                 this->normals[ulindex],
+                                 this->colors[ulindex] );
+
+                this->right.init( this->vertices[llindex],
+                                  this->normals[llindex],
+                                  this->colors[llindex], 
+                                  this->vertices[otherindex],
+                                  this->normals[otherindex],
+                                  this->colors[otherindex] );
+            } else {
+
+                /* To find the type, we take the cross product of the to edges.
+                 * If this is zero the triangle is degenerate, if it is above
+                 * we have the other to the left. Below zero we have it to the right.
+                 */
+                int type = (ulx - llx) * (othery - lly) - (otherx - llx) * (uly - lly); 
+               
+                if( type == 0 ) {
+                    this->valid = false;
+                } else if( type > 0 ) {
+                    // We have two edges to the left
+                    this->left.init( this->vertices[llindex], 
+                                     this->normals[llindex],
+                                     this->colors[llindex], 
+            		             this->vertices[otherindex],                                 
+            		             this->normals[otherindex],
+            		             this->colors[otherindex],
+                                     this->vertices[ulindex],
+                                     this->normals[ulindex],
+                                     this->colors[ulindex] );
+
+                    this->right.init( this->vertices[llindex],
+                                      this->normals[llindex],
+                                      this->colors[llindex],
+                                      this->vertices[ulindex],
+                                      this->normals[ulindex],
+                                      this->colors[ulindex] ); 
+
+                } else {
+                    // We have two edges to the right
+                    this->left.init( this->vertices[llindex],
+                                     this->normals[llindex],
+                                     this->colors[llindex],
+                                     this->vertices[ulindex],
+                                     this->normals[ulindex],
+                                     this->colors[ulindex] );
+ 
+                    this->right.init( this->vertices[llindex], 
+                                      this->normals[llindex],
+                                      this->colors[llindex], 
+            		              this->vertices[otherindex],                                 
+            		              this->normals[otherindex],
+            		              this->colors[otherindex],
+                                      this->vertices[ulindex],
+                                      this->normals[ulindex],
+                                      this->colors[ulindex] );
+                 }
+	    }
+            
 
 	    this->Debug = false;
 	    this->valid = true;
@@ -69,25 +174,12 @@ namespace graphics {
 	    return oldvalue;
 	}
 
-	bool Valid() const
-	{
-	    // implement the real version
-	    return true;
-	}
-
-	bool Degenerate() const
-	{
-	    // implement the real version
-	    return false;
-	}
-
 	int x() const      
 	{
 	    if (!this->valid) {
                 throw std::runtime_error("MyTriangleRasterizer::x():Invalid State/Not Initialized");
             }
-	    // implement the real version
-            return 0;
+            return this->x_current;
 	}
 
 	int y() const
@@ -95,8 +187,7 @@ namespace graphics {
 	    if (!this->valid) {
                 throw std::runtime_error("MyTriangleRasterizer::y():Invalid State/Not Initialized");
             }
-	    // implement the real version
-            return 0;
+            return this->y_current;
 	}
 
 	real_type depth() const     
@@ -151,8 +242,7 @@ namespace graphics {
 
 	bool more_fragments() const 
 	{
-	    // implement the real version
-	    return false;
+	    return this->valid;
 	}
 
 
@@ -164,7 +254,40 @@ namespace graphics {
 
 	void next_fragment()    
 	{
-	    // implement the real version
+          /**
+	  - Initialize an edge rasterizer left() for the left edge.
+          - Initialize an edge rasterizer right() for the right edge.
+          - Get the edge coordinates (xl , yl ) = (left.x(), left.y()).
+          - Get the edge coordinates (xr , yr ) = (right.x(), right.y()).
+          - If {(xl , yl ), . . . , (xr − 1, yr − 1)} != ∅ let
+            - triangle.next fragment() step through the points
+              (xi , yi ) ∈ {(xl , yl ), . . . , (xr − 1, yr − 1)} on each call.
+          - Step the next scan-line left.next fragment() and
+            right.next fragment().
+          - If still more fragments to be drawn, i.e.
+            left.more fragments() ∧ right.more fragments()
+            continue at 3. Else let triangle.more fragment() return
+            false.
+          **/
+
+          int tempx;	  
+
+          while( this->left.more_fragments() && this->right.more_fragments() ) {
+	      xl = left.x();
+	      yl = left.y();
+	      xr = right.x();
+	      yr = right.y();
+
+              for( tempx = xl; tempx < xr-1; ++tempx ) {
+                  
+              }
+ 
+              left.next_fragment();
+              right.next_fragment();
+          }       
+
+
+	  this->valid = false;
 	}
 
 
@@ -173,8 +296,10 @@ namespace graphics {
 	// Initialize the current triangle for rasterization
 	void initialize_triangle()
 	{
-	    // implement the real version
-	    this->valid = true;    // necessary?
+ 	  this->xl = left.x();
+          this->yl = left.y();
+          this->xr = right.x();
+          this->yr = right.y();       
 	}
 
 
@@ -191,7 +316,16 @@ namespace graphics {
 	// The computations should be done in integer coordinates.
 	int LowerLeft()
 	{
-	    return 0;
+            int ll = 0;
+            
+            for( int i = ll + 1; i < 3; ++i ) {
+		if( ( this->vertices[i][2] < this->vertices[ll][2] ) || 
+                    ( this->vertices[i][2] == this->vertices[ll][2] ) && ( this->vertices[i][1] < this->vertices[ll][1] ) ) {
+                    ll + i;
+		}
+	    }
+
+	    return ll;
 	}
 
 	// UpperLeft() returns the index of the vertex with the greatest y-coordinate
@@ -200,7 +334,16 @@ namespace graphics {
 	// The computations should be done in integer coordinates.
 	int UpperLeft()
 	{
-	    return 0;
+            int ul = 0;
+            
+            for( int i = ul + 1; i < 3; ++i ) {
+		if( ( this->vertices[i][2] > this->vertices[ul][2] ) || 
+                    ( this->vertices[i][2] == this->vertices[ul][2] ) && ( this->vertices[i][1] < this->vertices[ul][1] ) ) {
+                    ul + i;
+		}
+	    }
+
+	    return ul;
 	}
 
 
@@ -228,6 +371,11 @@ namespace graphics {
 	// Private Variables
 
 	vector3_type dummy_vector;
+	vector3_type vertices[3];
+        vector3_type normals[3];
+        vector3_type colors[3];
+        MyEdgeRasterizer<math_types> left;
+        MyEdgeRasterizer<math_types> right;
 
 	// The Debug variable
 	bool Debug;
@@ -238,7 +386,16 @@ namespace graphics {
 	int upper_left;
 	int the_other;
 
+        int xl;
+        int yl; 
+        int xr;
+        int yr;
+
+        int x_current;
+        int y_current;
+
 	bool valid;
+
     };
 
 }// end namespace graphics

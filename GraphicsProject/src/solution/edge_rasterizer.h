@@ -40,9 +40,12 @@ namespace graphics {
 	    // Save the original parameters
 
 	    std::cout << "edge_rasterizer::init(...) - One Edge" << std::endl;
+	    
+            this->vertices[0] = in_vertex1;
+            this->vertices[1] = in_vertex2;
 
-	    // There is only one edge
-
+	    this->two_edges = false;
+	    this->init_edge( 0, 1 );
 	    this->valid = true;
         }
 	
@@ -59,9 +62,14 @@ namespace graphics {
 	    // Save the original parameters
 
 	    std::cout << "edge_rasterizer::init(...) - Two Edges" << std::endl;
+            this->vertices[0] = in_vertex1;
+            this->vertices[1] = in_vertex2;
+            this->vertices[2] = in_vertex3;
 
-	    // There are two edges
-
+	    this->two_edges = true;
+ 
+            this->init_edge(0, 1);
+ 
 	    this->valid = true;
         }
 	
@@ -71,7 +79,7 @@ namespace graphics {
 	    if (!this->valid) {
 		throw std::runtime_error("MyEdgeRasterizer::x():Invalid State/Not Initialized");
             }
-	    return 0;
+	    return this->x_current;
 	}
 
 	int y() const
@@ -79,7 +87,7 @@ namespace graphics {
 	    if (!this->valid) {
 		throw std::runtime_error("MyEdgeRasterizer::y():Invalid State/Not Initialized");
             }
-	    return 0;
+	    return this->y_current;
 	}
 
 	real_type depth() const
@@ -123,26 +131,89 @@ namespace graphics {
 
 	bool more_fragments() const
 	{
-	    // Implement the real version
-	    return false;
+	    return this->valid;
 	}
 
 	void next_fragment()
         {
-	    // Implement the real version
-	}
+	    this->y_current += this->y_step;
+            if( this->y_current >= this->y_stop ) {
+                if( !( this->two_edges ) ) {
+                    this->valid = false;
+                } else {
+                    this->init_edge( 1, 2 );
+                    this->two_edges = false;
+                }
+            } else {
+                this->update_edge();
+            }
+        }
 
     protected:
 
     private:
-	void initialize_current_edge(int start_index, int stop_index)
-	{
-	    // Ensure that the edge has its first vertex lower than the second one
+        void init_edge( int vertex1, int vertex2 )
+        {
+            vector3_type first  = this->vertices[vertex1];
+	    vector3_type second = this->vertices[vertex2];
 
-	    // Implement the real version
-	}
+            this->x_start       = first[1];
+            this->y_start       = first[2];
 
+	    this->x_stop        = second[1];
+            this->y_stop        = second[2];
+
+            this->x_current     = this->x_start;
+            this->y_current     = this->y_start;
+            
+            this->dx            = this->x_stop - this->x_start;
+            this->dy            = this->y_stop - this->y_start;
+
+            this->x_step        = ( this->dx < 0 ) ? -1 : 1;
+            this->y_step        = 1;
+
+            this->numerator     = std::abs( this->dx );
+            this->denominator   = this->dy;
+            this->accumulator   = ( this->x_step > 0 ) ? this->denominator : 1;
+
+	    this->valid         = ( this->y_current < this->y_stop ); 
+        }
+
+        void update_edge() 
+        {
+            this->accumulator += this->numerator;
+            while( this->accumulator > this->denominator ) {
+                this->x_current   += this->x_step;
+                this->accumulator -= this->denominator;
+            }
+        }
+	
+	vector3_type vertices[3];
 	bool valid;
+	bool two_edges;
+	
+	int x_start;
+	int y_start;
+
+	int x_stop;
+	int y_stop;
+
+	int x_current;
+	int y_current;
+
+	int dx;
+	int dy;
+
+	int x_step;
+	int y_step;
+
+	int numerator;
+	int denominator;
+	int accumulator;
+
+        int prior_edge;
+        int next_edge;
+
     };
 
 }// end namespace graphics
