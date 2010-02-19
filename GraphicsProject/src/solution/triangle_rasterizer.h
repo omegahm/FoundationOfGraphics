@@ -70,12 +70,24 @@ namespace graphics {
             int otherx        = this->vertices[otherindex][1];
             int othery        = this->vertices[otherindex][2];
 	    this->the_other   = otherindex;
+            
+            std::cout << "ulx: " << ulx << " uly: " << uly << std::endl;
+            std::cout << "llx: " << llx << " lly: " << lly << std::endl;
+            std::cout << "otherx: " << otherx << " othery: " << othery << std::endl;
  	    
 
             /**
              * What type are we???
+             *
+             * To find the type, we take the cross product of the to edges.
+             * If this is zero the triangle is degenerate, if it is above
+             * we have the other to the left. Below zero we have it to the right.
              */
-            if( lly == othery ) {
+            int type = (ulx - llx) * (othery - lly) - (otherx - llx) * (uly - lly);
+
+            if( type != 0 && lly == othery ) {
+                std::cout << "I am a lly == othery" << std::endl;
+
 	        this->left.init( this->vertices[llindex],
                                  this->normals[llindex],
                                  this->colors[llindex],
@@ -89,8 +101,10 @@ namespace graphics {
                                   this->vertices[ulindex],
                                   this->normals[ulindex],
                                   this->colors[ulindex] );
-            } else if( uly == othery ) {
-	        this->left.init( this->vertices[llindex],
+            } else if( type != 0 && uly == othery ) {
+                std::cout << "I am a uly == othery" << std::endl;
+	        
+                this->left.init( this->vertices[llindex],
                                  this->normals[llindex],
                                  this->colors[llindex],
                                  this->vertices[ulindex],
@@ -104,17 +118,14 @@ namespace graphics {
                                   this->normals[otherindex],
                                   this->colors[otherindex] );
             } else {
-
-                /* To find the type, we take the cross product of the to edges.
-                 * If this is zero the triangle is degenerate, if it is above
-                 * we have the other to the left. Below zero we have it to the right.
-                 */
-                int type = (ulx - llx) * (othery - lly) - (otherx - llx) * (uly - lly); 
-               
                 if( type == 0 ) {
+                    std::cout << "I am degenerate" << std::endl;
                     this->valid = false;
+                    return;
                 } else if( type > 0 ) {
                     // We have two edges to the left
+                    std::cout << "I am a lefty" << std::endl;
+
                     this->left.init( this->vertices[llindex], 
                                      this->normals[llindex],
                                      this->colors[llindex], 
@@ -134,6 +145,7 @@ namespace graphics {
 
                 } else {
                     // We have two edges to the right
+                    std::cout << "I am a righty" << std::endl;
                     this->left.init( this->vertices[llindex],
                                      this->normals[llindex],
                                      this->colors[llindex],
@@ -153,7 +165,8 @@ namespace graphics {
                  }
 	    }
             
-
+	    
+            initialize_triangle();
 	    this->Debug = false;
 	    this->valid = true;
 	}
@@ -270,26 +283,35 @@ namespace graphics {
             false.
           **/
 
-          int tempx;	  
+          
+          if( this->valid && this->left.more_fragments() && this->right.more_fragments() ) {
+              this->xl = this->left.x();
+              this->yl = this->left.y();
+              this->xr = this->right.x();
+              this->yr = this->right.y();
 
-          while( this->left.more_fragments() && this->right.more_fragments() ) {
-	      xl = left.x();
-	      yl = left.y();
-	      xr = right.x();
-	      yr = right.y();
-
-              for( tempx = xl; tempx < xr-1; ++tempx ) {
-                  
+              //std::cout << "The left edge is at (" << this->xl << ", " << this->yl << ")" << std::endl;
+              //std::cout << "The right edge is at (" << this->xr << ", " << this->yr << ")" << std::endl;
+              std::cout << "Currently I am at (" << this->x_current << ", " << this->y_current << ")" << std::endl;
+              
+              if( this->x_current >= this->xr - 1 ) {
+                 left.next_fragment();
+                 right.next_fragment();
+                 this->y_current = this->y_current + 1;
+                 
+                 if( this->left.more_fragments() ) {
+		     this->x_current = left.x();
+                 } else {
+                     this->valid = false;
+                 }
+              } else {
+                 this->x_current = this->x_current + 1;
               }
- 
-              left.next_fragment();
-              right.next_fragment();
-          }       
-
-
-	  this->valid = false;
+          } else {
+	      this->valid = false;
+          }
 	}
-
+       
 
 
     private:
@@ -299,7 +321,9 @@ namespace graphics {
  	  this->xl = left.x();
           this->yl = left.y();
           this->xr = right.x();
-          this->yr = right.y();       
+          this->yr = right.y();
+          this->x_current = this->xl;
+          this->y_current = this->yl;       
 	}
 
 
@@ -321,7 +345,7 @@ namespace graphics {
             for( int i = ll + 1; i < 3; ++i ) {
 		if( ( this->vertices[i][2] < this->vertices[ll][2] ) || 
                     ( this->vertices[i][2] == this->vertices[ll][2] ) && ( this->vertices[i][1] < this->vertices[ll][1] ) ) {
-                    ll + i;
+                    ll = i;
 		}
 	    }
 
@@ -339,22 +363,12 @@ namespace graphics {
             for( int i = ul + 1; i < 3; ++i ) {
 		if( ( this->vertices[i][2] > this->vertices[ul][2] ) || 
                     ( this->vertices[i][2] == this->vertices[ul][2] ) && ( this->vertices[i][1] < this->vertices[ul][1] ) ) {
-                    ul + i;
+                    ul = i;
 		}
 	    }
 
 	    return ul;
 	}
-
-
-	bool SearchForNonEmptyScanline()
-	{
-	    // Assumes that the current scanline is empty!
-
-	    // implement the real version
-	    return this->valid;
-	}
-
 
 	void choose_color(int x)
 	{

@@ -46,7 +46,6 @@ namespace graphics {
 
 	    this->two_edges = false;
 	    this->init_edge( 0, 1 );
-	    this->valid = true;
         }
 	
 	void init(vector3_type const& in_vertex1,
@@ -69,8 +68,6 @@ namespace graphics {
 	    this->two_edges = true;
  
             this->init_edge(0, 1);
- 
-	    this->valid = true;
         }
 	
 
@@ -154,14 +151,11 @@ namespace graphics {
     private:
         void init_edge( int vertex1, int vertex2 )
         {
-            vector3_type first  = this->vertices[vertex1];
-	    vector3_type second = this->vertices[vertex2];
+            this->x_start       = this->vertices[vertex1][1];
+            this->y_start       = this->vertices[vertex1][2];
 
-            this->x_start       = first[1];
-            this->y_start       = first[2];
-
-	    this->x_stop        = second[1];
-            this->y_stop        = second[2];
+	    this->x_stop        = this->vertices[vertex2][1];
+            this->y_stop        = this->vertices[vertex2][2];
 
             this->x_current     = this->x_start;
             this->y_current     = this->y_start;
