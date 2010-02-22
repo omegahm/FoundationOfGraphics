@@ -754,11 +754,11 @@ void DebugTriangles()
 				  Vertex2[v], ZeroNormal, cwhite,
 				  Vertex3[v], ZeroNormal, cwhite);
 
-    render_pipeline.draw_grid(XSpacing, YSpacing, cblack);
+    render_pipeline.draw_grid(XSpacing, YSpacing, cwhite);
 
-    render_pipeline.draw_debugline(Vertex1[v], Vertex2[v], cwhite);
-    render_pipeline.draw_debugline(Vertex2[v], Vertex3[v], cwhite);
-    render_pipeline.draw_debugline(Vertex3[v], Vertex1[v], cwhite); // was cgreen
+    render_pipeline.draw_debugline(Vertex1[v], Vertex2[v], cblack);
+    render_pipeline.draw_debugline(Vertex2[v], Vertex3[v], cblack);
+    render_pipeline.draw_debugline(Vertex3[v], Vertex1[v], cblack); // was cgreen
 
     render_pipeline.unit_length(1);
     render_pipeline.DebugOff();

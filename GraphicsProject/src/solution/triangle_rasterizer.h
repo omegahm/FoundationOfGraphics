@@ -16,6 +16,7 @@
 
 
 namespace graphics {
+
     template<typename math_types>
     class MyTriangleRasterizer : public Rasterizer<math_types>
     {
@@ -71,11 +72,6 @@ namespace graphics {
             int othery        = this->vertices[otherindex][2];
 	    this->the_other   = otherindex;
             
-            std::cout << "ulx: " << ulx << " uly: " << uly << std::endl;
-            std::cout << "llx: " << llx << " lly: " << lly << std::endl;
-            std::cout << "otherx: " << otherx << " othery: " << othery << std::endl;
- 	    
-
             /**
              * What type are we???
              *
@@ -86,7 +82,6 @@ namespace graphics {
             int type = (ulx - llx) * (othery - lly) - (otherx - llx) * (uly - lly);
 
             if( type != 0 && lly == othery ) {
-                std::cout << "I am a lly == othery" << std::endl;
 
 	        this->left.init( this->vertices[llindex],
                                  this->normals[llindex],
@@ -102,7 +97,6 @@ namespace graphics {
                                   this->normals[ulindex],
                                   this->colors[ulindex] );
             } else if( type != 0 && uly == othery ) {
-                std::cout << "I am a uly == othery" << std::endl;
 	        
                 this->left.init( this->vertices[llindex],
                                  this->normals[llindex],
@@ -119,12 +113,10 @@ namespace graphics {
                                   this->colors[otherindex] );
             } else {
                 if( type == 0 ) {
-                    std::cout << "I am degenerate" << std::endl;
                     this->valid = false;
                     return;
                 } else if( type > 0 ) {
                     // We have two edges to the left
-                    std::cout << "I am a lefty" << std::endl;
 
                     this->left.init( this->vertices[llindex], 
                                      this->normals[llindex],
@@ -145,7 +137,6 @@ namespace graphics {
 
                 } else {
                     // We have two edges to the right
-                    std::cout << "I am a righty" << std::endl;
                     this->left.init( this->vertices[llindex],
                                      this->normals[llindex],
                                      this->colors[llindex],
@@ -166,9 +157,26 @@ namespace graphics {
 	    }
             
 	    
-            initialize_triangle();
 	    this->Debug = false;
 	    this->valid = true;
+            this->initialize_triangle();
+
+            /* The first scanline is almost always empty!
+             * it is either a horizontal line,
+             * or a scanline with one dot, which
+             * has to be part of both a left and 
+             * right edge.
+             * 
+             * The horizontal line is drawn, the other is skipped
+             */
+            this->x_current = this->left.x();
+            this->y_current = this->left.y();
+            
+            if( lly != othery ) {
+                this->valid = this->SearchForNonEmptyScanline(); 
+            } else {
+                this->valid = true;
+            }
 	}
 
 	bool DebugOn()
@@ -187,11 +195,24 @@ namespace graphics {
 	    return oldvalue;
 	}
 
+	bool Valid() const
+	{
+	    // implement the real version
+	    return true;
+	}
+
+	bool Degenerate() const
+	{
+	    // implement the real version
+	    return false;
+	}
+
 	int x() const      
 	{
 	    if (!this->valid) {
                 throw std::runtime_error("MyTriangleRasterizer::x():Invalid State/Not Initialized");
             }
+	    // implement the real version
             return this->x_current;
 	}
 
@@ -200,6 +221,7 @@ namespace graphics {
 	    if (!this->valid) {
                 throw std::runtime_error("MyTriangleRasterizer::y():Invalid State/Not Initialized");
             }
+	    // implement the real version
             return this->y_current;
 	}
 
@@ -267,63 +289,30 @@ namespace graphics {
 
 	void next_fragment()    
 	{
-          /**
-	  - Initialize an edge rasterizer left() for the left edge.
-          - Initialize an edge rasterizer right() for the right edge.
-          - Get the edge coordinates (xl , yl ) = (left.x(), left.y()).
-          - Get the edge coordinates (xr , yr ) = (right.x(), right.y()).
-          - If {(xl , yl ), . . . , (xr − 1, yr − 1)} != ∅ let
-            - triangle.next fragment() step through the points
-              (xi , yi ) ∈ {(xl , yl ), . . . , (xr − 1, yr − 1)} on each call.
-          - Step the next scan-line left.next fragment() and
-            right.next fragment().
-          - If still more fragments to be drawn, i.e.
-            left.more fragments() ∧ right.more fragments()
-            continue at 3. Else let triangle.more fragment() return
-            false.
-          **/
-
-          
-          if( this->valid && this->left.more_fragments() && this->right.more_fragments() ) {
-              this->xl = this->left.x();
-              this->yl = this->left.y();
-              this->xr = this->right.x();
-              this->yr = this->right.y();
-
-              //std::cout << "The left edge is at (" << this->xl << ", " << this->yl << ")" << std::endl;
-              //std::cout << "The right edge is at (" << this->xr << ", " << this->yr << ")" << std::endl;
-              std::cout << "Currently I am at (" << this->x_current << ", " << this->y_current << ")" << std::endl;
-              
-              if( this->x_current >= this->xr - 1 ) {
-                 left.next_fragment();
-                 right.next_fragment();
-                 this->y_current = this->y_current + 1;
-                 
-                 if( this->left.more_fragments() ) {
-		     this->x_current = left.x();
-                 } else {
-                     this->valid = false;
-                 }
-              } else {
-                 this->x_current = this->x_current + 1;
-              }
-          } else {
-	      this->valid = false;
-          }
+            if( this->valid && this->left.more_fragments() && this->right.more_fragments() ) {
+                if( this->y_current > this->left.y() && this->y_current > this->right.y() ) {
+                    this->valid = false;
+                } else if( this->x_current >= this->right.x() - 1 ) {
+                    // We have reached the last pixel in the scanline
+                    if( !this->SearchForNonEmptyScanline() ) {
+                        this->valid = false;
+                    }
+                } else {
+                    this->x_current += 1;
+                }
+            } else {
+                this->valid = false; 
+            }
 	}
-       
+
 
 
     private:
 	// Initialize the current triangle for rasterization
 	void initialize_triangle()
 	{
- 	  this->xl = left.x();
-          this->yl = left.y();
-          this->xr = right.x();
-          this->yr = right.y();
-          this->x_current = this->xl;
-          this->y_current = this->yl;       
+	    // implement the real version
+	    this->valid = true;    // necessary?
 	}
 
 
@@ -340,7 +329,7 @@ namespace graphics {
 	// The computations should be done in integer coordinates.
 	int LowerLeft()
 	{
-            int ll = 0;
+	    int ll = 0;
             
             for( int i = ll + 1; i < 3; ++i ) {
 		if( ( this->vertices[i][2] < this->vertices[ll][2] ) || 
@@ -358,7 +347,7 @@ namespace graphics {
 	// The computations should be done in integer coordinates.
 	int UpperLeft()
 	{
-            int ul = 0;
+	    int ul = 0;
             
             for( int i = ul + 1; i < 3; ++i ) {
 		if( ( this->vertices[i][2] > this->vertices[ul][2] ) || 
@@ -367,8 +356,28 @@ namespace graphics {
 		}
 	    }
 
-	    return ul;
+	    return ul; 
 	}
+
+
+	bool SearchForNonEmptyScanline()
+	{
+	    // Assumes that the current scanline is empty!
+            do {
+                this->left.next_fragment();
+                this->right.next_fragment();
+
+                if( this->left.more_fragments() && this->right.more_fragments() ) {
+                    this->x_current = this->left.x();
+                    this->y_current = this->left.y();
+                } else {
+                    break;
+                }
+            } while( this->x_current > this->right.x() - 1 );
+ 
+	    return this->valid && this->left.more_fragments() && this->right.more_fragments();
+	}
+
 
 	void choose_color(int x)
 	{
@@ -385,31 +394,23 @@ namespace graphics {
 	// Private Variables
 
 	vector3_type dummy_vector;
-	vector3_type vertices[3];
-        vector3_type normals[3];
+        vector3_type vertices[3];
         vector3_type colors[3];
-        MyEdgeRasterizer<math_types> left;
-        MyEdgeRasterizer<math_types> right;
+        vector3_type normals[3];
 
+	MyEdgeRasterizer<math_types> left;
+	MyEdgeRasterizer<math_types> right;
 	// The Debug variable
 	bool Debug;
-
 
 	// Indices into the vertex table
 	int lower_left;
 	int upper_left;
 	int the_other;
 
-        int xl;
-        int yl; 
-        int xr;
-        int yr;
-
         int x_current;
         int y_current;
-
 	bool valid;
-
     };
 
 }// end namespace graphics

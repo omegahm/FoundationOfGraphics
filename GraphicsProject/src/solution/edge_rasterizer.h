@@ -37,8 +37,6 @@ namespace graphics {
 		  vector3_type const& in_normal2,
 		  vector3_type const& in_color2)
         {
-	    // Save the original parameters
-
 	    std::cout << "edge_rasterizer::init(...) - One Edge" << std::endl;
 	    
             this->vertices[0] = in_vertex1;
@@ -58,15 +56,12 @@ namespace graphics {
 		  vector3_type const& in_normal3,
 		  vector3_type const& in_color3)
         {
-	    // Save the original parameters
-
 	    std::cout << "edge_rasterizer::init(...) - Two Edges" << std::endl;
             this->vertices[0] = in_vertex1;
             this->vertices[1] = in_vertex2;
             this->vertices[2] = in_vertex3;
 
 	    this->two_edges = true;
- 
             this->init_edge(0, 1);
         }
 	
@@ -160,14 +155,14 @@ namespace graphics {
             this->x_current     = this->x_start;
             this->y_current     = this->y_start;
             
-            this->dx            = this->x_stop - this->x_start;
-            this->dy            = this->y_stop - this->y_start;
+            int dx              = this->x_stop - this->x_start;
+            int dy              = this->y_stop - this->y_start;
 
-            this->x_step        = ( this->dx < 0 ) ? -1 : 1;
+            this->x_step        = ( dx < 0 ) ? -1 : 1;
             this->y_step        = 1;
 
-            this->numerator     = std::abs( this->dx );
-            this->denominator   = this->dy;
+            this->numerator     = std::abs( dx );
+            this->denominator   = dy;
             this->accumulator   = ( this->x_step > 0 ) ? this->denominator : 1;
 
 	    this->valid         = ( this->y_current < this->y_stop ); 
@@ -194,9 +189,6 @@ namespace graphics {
 
 	int x_current;
 	int y_current;
-
-	int dx;
-	int dy;
 
 	int x_step;
 	int y_step;
