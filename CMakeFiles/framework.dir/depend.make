@@ -21,6 +21,9 @@ CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/solution/math_types.h
 CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/solution/point_rasterizer.h
 CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/solution/triangle_rasterizer.h
 CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/solution/vertex_program.h
+CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/GL/gl.h
+CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/GL/glu.h
+CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/GL/glut.h
 CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/matrix/columnvector.C
 CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/matrix/columnvector.h
 CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/matrix/matrix.C

@@ -1,1 +1,1 @@
-/usr/bin/c++   -trigraphs   CMakeFiles/framework.dir/src/main.o  -o framework -rdynamic -lGLU -lGL -lSM -lICE -lX11 -lXext -lglut -lXmu -lXi 
+/usr/bin/c++   -trigraphs -Wl,-search_paths_first -headerpad_max_install_names -fPIC CMakeFiles/framework.dir/src/main.o  -o framework  -framework AGL -framework OpenGL -framework GLUT -framework Cocoa 

@@ -71,7 +71,7 @@ int winHeight = 768;
 #include <sstream>
 
 
-//For MAC OS X
+//For MAC OS
 #ifdef __APPLE__
 #  include <OpenGL/gl.h>
 #  include <OpenGL/glu.h>

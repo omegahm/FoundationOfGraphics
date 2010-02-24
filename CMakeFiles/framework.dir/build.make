@@ -26,16 +26,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = "/Applications/CMake 2.6-2.app/Contents/bin/cmake"
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = "/Applications/CMake 2.6-2.app/Contents/bin/cmake" -E remove -f
+
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = "/Applications/CMake 2.6-2.app/Contents/bin/ccmake"
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ohm/projects/grafik/GraphicsProject
+CMAKE_SOURCE_DIR = /Users/ohm/projects/grafik/GraphicsProject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ohm/projects/grafik
+CMAKE_BINARY_DIR = /Users/ohm/projects/grafik
 
 # Include any dependencies generated for this target.
 include CMakeFiles/framework.dir/depend.make
@@ -48,17 +51,17 @@ include CMakeFiles/framework.dir/flags.make
 
 CMakeFiles/framework.dir/src/main.o: CMakeFiles/framework.dir/flags.make
 CMakeFiles/framework.dir/src/main.o: GraphicsProject/src/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ohm/projects/grafik/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/ohm/projects/grafik/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/framework.dir/src/main.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/framework.dir/src/main.o -c /home/ohm/projects/grafik/GraphicsProject/src/main.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/framework.dir/src/main.o -c /Users/ohm/projects/grafik/GraphicsProject/src/main.cpp
 
 CMakeFiles/framework.dir/src/main.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/framework.dir/src/main.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/ohm/projects/grafik/GraphicsProject/src/main.cpp > CMakeFiles/framework.dir/src/main.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/ohm/projects/grafik/GraphicsProject/src/main.cpp > CMakeFiles/framework.dir/src/main.i
 
 CMakeFiles/framework.dir/src/main.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/framework.dir/src/main.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/ohm/projects/grafik/GraphicsProject/src/main.cpp -o CMakeFiles/framework.dir/src/main.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/ohm/projects/grafik/GraphicsProject/src/main.cpp -o CMakeFiles/framework.dir/src/main.s
 
 CMakeFiles/framework.dir/src/main.o.requires:
 .PHONY : CMakeFiles/framework.dir/src/main.o.requires
@@ -78,15 +81,6 @@ framework_OBJECTS = \
 framework_EXTERNAL_OBJECTS =
 
 framework: CMakeFiles/framework.dir/src/main.o
-framework: /usr/lib/libGLU.so
-framework: /usr/lib/libGL.so
-framework: /usr/lib/libSM.so
-framework: /usr/lib/libICE.so
-framework: /usr/lib/libX11.so
-framework: /usr/lib/libXext.so
-framework: /usr/lib/libglut.so
-framework: /usr/lib/libXmu.so
-framework: /usr/lib/libXi.so
 framework: CMakeFiles/framework.dir/build.make
 framework: CMakeFiles/framework.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable framework"
@@ -104,6 +98,6 @@ CMakeFiles/framework.dir/clean:
 .PHONY : CMakeFiles/framework.dir/clean
 
 CMakeFiles/framework.dir/depend:
-	cd /home/ohm/projects/grafik && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ohm/projects/grafik/GraphicsProject /home/ohm/projects/grafik/GraphicsProject /home/ohm/projects/grafik /home/ohm/projects/grafik /home/ohm/projects/grafik/CMakeFiles/framework.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/ohm/projects/grafik && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ohm/projects/grafik/GraphicsProject /Users/ohm/projects/grafik/GraphicsProject /Users/ohm/projects/grafik /Users/ohm/projects/grafik /Users/ohm/projects/grafik/CMakeFiles/framework.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/framework.dir/depend
 
