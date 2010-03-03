@@ -9,13 +9,14 @@
 *                                                                   *
 \*******************************************************************/
 
-#define DRAWGRID       1
-#define DRAWPOINTS     1
-#define DEBUGPOINTS    1
-#define DRAWLINES      1
-#define DEBUGLINES     1
-#define DRAWTRIANGLES  1
-#define DEBUGTRIANGLES 1
+#define DRAWGRID          1
+#define DRAWPOINTS        1
+#define DEBUGPOINTS       1
+#define DRAWLINES         1
+#define DEBUGLINES        1
+#define DRAWTRIANGLES     1
+#define DEBUGTRIANGLES    1
+#define COORDINATE_SYSTEM 1
 
 
 /*******************************************************************\
@@ -196,7 +197,7 @@ void DrawPoint()
     for (int x = x_start; x < x_stop; ++x) {
 	for (int y = y_start; y < y_stop; ++y) {
 	    MyMathTypes::vector3_type point(x, y, depth);
-	    render_pipeline.draw_point(point, cred);
+	    render_pipeline.draw_point(point, cblue);
 	}
     }
 }
@@ -268,7 +269,7 @@ void DebugPoint()
     for (int x = x_start; x < x_stop; ++x) {
 	for (int y = y_start; y < y_stop; ++y) {
 	    MyMathTypes::vector3_type point(x, y, depth);
-	    render_pipeline.draw_point(point, cred);
+	    render_pipeline.draw_point(point, cblue);
 	}
     }
 
@@ -767,6 +768,240 @@ void DebugTriangles()
 
 /*******************************************************************\
 *                                                                   *
+*                         H o u s e D a t a                         *
+*                                                                   *
+\*******************************************************************/
+
+// Front Wall
+MyMathTypes::real_type const front_depth = 54.0;
+MyMathTypes::vector3_type FrontWall[] = {
+    MyMathTypes::vector3_type( 0.0,  0.0, front_depth),
+    MyMathTypes::vector3_type(16.0,  0.0, front_depth),
+    MyMathTypes::vector3_type(16.0, 10.0, front_depth),
+    MyMathTypes::vector3_type( 8.0, 16.0, front_depth),
+    MyMathTypes::vector3_type( 0.0, 10.0, front_depth)
+};
+int const NFrontWallVertices = sizeof(FrontWall) / sizeof(MyMathTypes::vector3_type);
+
+// Back Wall
+MyMathTypes::real_type const back_depth = 30.0;
+//MyMathTypes::real_type const back_depth = -100.0;
+MyMathTypes::vector3_type BackWall[] = {
+    MyMathTypes::vector3_type( 0.0,  0.0, back_depth),
+    MyMathTypes::vector3_type(16.0,  0.0, back_depth),
+    MyMathTypes::vector3_type(16.0, 10.0, back_depth),
+    MyMathTypes::vector3_type( 8.0, 16.0, back_depth),
+    MyMathTypes::vector3_type( 0.0, 10.0, back_depth)
+};
+int const NBackWallVertices = sizeof(BackWall) / sizeof(MyMathTypes::vector3_type);
+
+
+/*******************************************************************\
+*                                                                   *
+*                       D r a w H o u s e ( )                       *
+*                                                                   *
+\*******************************************************************/
+
+void DrawHouse()
+{
+    // Test program for the transformations and projections
+
+    //std::cout << "Test program for the transformations and projections" << std::endl;
+
+    // Draw the front wall
+    for (int i = 1; i < NFrontWallVertices; ++i) {
+	render_pipeline.draw_line( FrontWall[i-1], cwhite,
+				   FrontWall[i], cwhite );
+    }
+    render_pipeline.draw_line( FrontWall[NFrontWallVertices-1], cwhite, 
+			       FrontWall[0], cwhite );
+
+    // Draw the back wall
+    for (int i = 1; i < NBackWallVertices; ++i) {
+	render_pipeline.draw_line(BackWall[i-1], cblue, 
+				  BackWall[i], cblue );
+    }
+    render_pipeline.draw_line( BackWall[NBackWallVertices-1], cblue, 
+			       BackWall[0], cblue );
+
+    // Draw the side walls
+    for (int i = 0; i < NFrontWallVertices; ++i) {
+	render_pipeline.draw_line( FrontWall[i], cgreen, 
+				   BackWall[i], cgreen );
+    }
+
+    // Reset the framebuffer resolution to the original values
+    render_pipeline.set_resolution(winWidth, winHeight);
+    //camera.reset();
+}
+
+
+/*******************************************************************\
+*                                                                   *
+*                  F o l e y _ F i g _ 6 _ 2 7 ( )                  *
+*                                                                   *
+\*******************************************************************/
+
+void Foley_Fig_6_27()
+{
+    std::cout << "Draw the House in Foley, Fig 6.27." << std::endl;
+
+    render_pipeline.load_rasterizer( line_rasterizer );
+    render_pipeline.load_vertex_program( vertex_program );
+
+    MyMathTypes::vector3_type vrp(0, 0, 0);
+    MyMathTypes::vector3_type vpn(0, 0, 1);
+    MyMathTypes::vector3_type vup(0, 1, 0);
+    MyMathTypes::vector3_type prp(8, 6, 84);
+
+    MyMathTypes::vector2_type lower_left( -50.0, -50.0);
+    MyMathTypes::vector2_type upper_right( 50.0,  50.0);
+
+    MyMathTypes::real_type    front_plane(60.0);
+    MyMathTypes::real_type    back_plane( 25.0);
+
+    camera.set_projection(vrp, vpn, vup, prp,
+			  lower_left, upper_right,
+			  front_plane, back_plane);
+
+    DrawHouse();
+}
+
+
+/*******************************************************************\
+*                                                                   *
+*                  F o l e y _ F i g _ 6 _ 2 8 ( )                  *
+*                                                                   *
+\*******************************************************************/
+
+void Foley_Fig_6_28()
+{
+    std::cout << "Draw the House in Foley, Fig 6.28." << std::endl;
+
+    render_pipeline.load_rasterizer( line_rasterizer );
+    render_pipeline.load_vertex_program( vertex_program );
+
+    MyMathTypes::vector3_type vrp(0, 0, 54);
+    MyMathTypes::vector3_type vpn(0, 0, 1);
+    MyMathTypes::vector3_type vup(0, 1, 0);
+    MyMathTypes::vector3_type prp(8, 6, 30);
+
+    MyMathTypes::vector2_type lower_left( -1.0, -1.0);
+    MyMathTypes::vector2_type upper_right(17.0, 17.0);
+
+    MyMathTypes::real_type    front_plane(  1.0);
+    MyMathTypes::real_type    back_plane( -35.0);
+
+    camera.set_projection(vrp, vpn, vup, prp,
+			  lower_left, upper_right,
+			  front_plane, back_plane);
+
+    DrawHouse();
+}
+
+
+/*******************************************************************\
+*                                                                   *
+*                  F o l e y _ F i g _ 6 _ 3 1 ( )                  *
+*                                                                   *
+\*******************************************************************/
+
+void Foley_Fig_6_31()
+{
+    std::cout << "Draw the House in Foley, Fig 6.31." << std::endl;
+
+    render_pipeline.load_rasterizer( line_rasterizer );
+    render_pipeline.load_vertex_program( vertex_program );
+
+    MyMathTypes::vector3_type vrp(16, 0, 54);
+    MyMathTypes::vector3_type vpn(0, 0, 1);
+    MyMathTypes::vector3_type vup(0, 1, 0);
+    MyMathTypes::vector3_type prp(20, 25, 20);
+
+    MyMathTypes::vector2_type lower_left( -20.0, -5.0);
+    MyMathTypes::vector2_type upper_right( 20.0,  35.0);
+
+    MyMathTypes::real_type    front_plane(  1.0);
+    MyMathTypes::real_type    back_plane( -35.0);
+
+    camera.set_projection(vrp, vpn, vup, prp,
+			  lower_left, upper_right,
+			  front_plane, back_plane);
+
+    DrawHouse();
+}
+
+
+/*******************************************************************\
+*                                                                   *
+*                  F o l e y _ F i g _ 6 _ 2 2 ( )                  *
+*                                                                   *
+\*******************************************************************/
+
+void Foley_Fig_6_22()
+{
+    std::cout << "Draw the House in Foley, Fig 6.22." << std::endl;
+
+    render_pipeline.load_rasterizer( line_rasterizer );
+    render_pipeline.load_vertex_program( vertex_program );
+
+    MyMathTypes::vector3_type vrp(16, 0, 54);
+    MyMathTypes::vector3_type vpn(1, 0, 1);
+    MyMathTypes::vector3_type vup(0, 1, 0);
+    MyMathTypes::vector3_type prp(0, 25, 20 * sqrt(2.0));
+
+    MyMathTypes::vector2_type lower_left( -20.0, -5.0);
+    MyMathTypes::vector2_type upper_right( 20.0,  35.0);
+
+    MyMathTypes::real_type    front_plane(  1.0);
+    MyMathTypes::real_type    back_plane( -35.0);
+
+    camera.set_projection(vrp, vpn, vup, prp,
+			  lower_left, upper_right,
+			  front_plane, back_plane);
+
+    DrawHouse();
+}
+
+
+/*******************************************************************\
+*                                                                   *
+*                  F o l e y _ F i g _ 6 _ 3 4 ( )                  *
+*                                                                   *
+\*******************************************************************/
+
+void Foley_Fig_6_34()
+{
+    std::cout << "Draw the House in Foley, Fig 6.34." << std::endl;
+
+    render_pipeline.load_rasterizer( line_rasterizer );
+    render_pipeline.load_vertex_program( vertex_program );
+
+    MyMathTypes::vector3_type vrp(16, 0, 54);
+    MyMathTypes::vector3_type vpn(1, 0, 1);
+    MyMathTypes::vector3_type vup(-sin(10.0 * M_PI / 180.0),
+				   cos(10.0 * M_PI / 180.0),
+				   sin(10.0 * M_PI / 180.0));
+    //std::cout << "vup = [" << vup << "]^T" << std::endl;
+    MyMathTypes::vector3_type prp(0, 25, 20 * sqrt(2.0));
+
+    MyMathTypes::vector2_type lower_left( -20.0, -5.0);
+    MyMathTypes::vector2_type upper_right( 20.0,  35.0);
+
+    MyMathTypes::real_type    front_plane(  1.0);
+    MyMathTypes::real_type    back_plane( -35.0);
+
+    camera.set_projection(vrp, vpn, vup, prp,
+			  lower_left, upper_right,
+			  front_plane, back_plane);
+
+    DrawHouse();
+}
+
+
+
+/*******************************************************************\
+*                                                                   *
 *                         r e s h a p e ( )                         *
 *                                                                   *
 \*******************************************************************/
@@ -822,7 +1057,15 @@ void usage()
     std::cout << "\tR : Debug Triangles - backward" << std::endl << std::flush;
     std::cout << std::endl << std::flush;
 
-    std::cout << "Keystroke: "                      << std::flush;
+	std::cout << "\tCustom:"                         << std::endl << std::flush;
+	std::cout << "\t-------"                         << std::endl << std::flush;
+	std::cout << "\t1 : Draw House - Foley Fig 6.27" << std::endl << std::flush;
+	std::cout << "\t2 : Draw House - Foley Fig 6.28" << std::endl << std::flush;
+	std::cout << "\t3 : Draw House - Foley Fig 6.31" << std::endl << std::flush;
+	std::cout << "\t4 : Draw House - Foley Fig 6.22" << std::endl << std::flush;
+	std::cout << "\t5 : Draw House - Foley Fig 6.34" << std::endl << std::flush;
+
+    std::cout << "Keystroke: "                       << std::flush;
 }
 
 /*******************************************************************\
@@ -925,9 +1168,35 @@ void keyboard(unsigned char Key, int Xmouse, int Ymouse)
         // toggle the grid on and off
         std::cout << "Toggle Grid";
 	figure = 'g';
-        GridVisible = GridVisible ? 0 : 1;
+	GridVisible = !GridVisible;
 	//glutPostRedisplay();
         break;
+
+	case '1':
+	figure = '1';
+	glutPostRedisplay();
+	break;
+	
+	case '2':
+	figure = '2';
+	glutPostRedisplay();
+	break;
+		
+	case '3':
+	figure = '3';
+	glutPostRedisplay();
+	break;
+				
+	case '4':
+	figure = '4';
+	glutPostRedisplay();
+	break;
+								
+	case '5':
+	figure = '5';
+	glutPostRedisplay();
+	break;
+								
     default:
 	std::cout << "No action defined for key '" << Key << "'" << std::endl << std::flush;
 	std::cout << std::endl << std::flush;
@@ -953,7 +1222,7 @@ void display()
     glMatrixMode( GL_MODELVIEW );
     //////////////////////////////////////////////////////////////////
     
-    // >> TODO USE YOUR SOFTWARE RENDERPIPEINE TO DRAW << 
+    // >> TODO USE YOUR SOFTWARE RENDERPIPELINE TO DRAW << 
 
 #ifdef KENNY_ZBUFFER
     MyMathTypes::real_type     infinity =  1.0;
@@ -964,7 +1233,8 @@ void display()
     MyMathTypes::vector3_type  color( 1.0, 0.0, 0.0 );   // Red Screen of Death Color
     
     //  camera.set_model_view( ...... );
-    //  camera.set_projection( ...... );
+
+    //  camera.set_projection( vrp, vpn, vup, prp, lower_left, upper_right, front_plane, back_plane);
         
     render_pipeline.clear( infinity, color );
 
@@ -1076,6 +1346,28 @@ void display()
     }
 #endif
 
+/*******************************************************************\
+*                                                                   *
+*                         D r a w H o u s e ( )                     *
+*                                                                   *
+\*******************************************************************/
+
+	if( figure == '1' ) {
+		Foley_Fig_6_27();
+	}
+	if( figure == '2' ) {
+		Foley_Fig_6_28();
+	}
+	if( figure == '3' ) {
+		Foley_Fig_6_31();
+	}
+	if( figure == '4' ) {
+		Foley_Fig_6_22();
+	}
+	if( figure == '5' ) {
+		Foley_Fig_6_34();
+	}
+
     render_pipeline.flush();
     
     glFinish();
@@ -1109,7 +1401,7 @@ int main( int argc, char **argv )
     try {
 	glutInit( &argc, argv );
     
-	glutInitDisplayMode( GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE | GLUT_STENCIL);
+	glutInitDisplayMode( GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE | GLUT_STENCIL );
 	glutInitWindowSize( winWidth, winHeight );
 	glutInitWindowPosition( 50, 50 );
 	glutCreateWindow( "Red Screen of Death" );
@@ -1133,7 +1425,7 @@ int main( int argc, char **argv )
         // old: render_pipeline.load_rasterizer( rasterizer);
 	
 	//--- allocate memory
-	render_pipeline.set_resolution(winWidth, winHeight );
+	render_pipeline.set_resolution( winWidth, winHeight );
     
 	//--- set up graphics state
 	render_pipeline.state().ambient_intensity() = 0.5;

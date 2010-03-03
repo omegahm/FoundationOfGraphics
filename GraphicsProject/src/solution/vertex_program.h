@@ -5,6 +5,7 @@
 // Copyright (C) 2008 Department of Computer Science, University of Copenhagen
 //
 #include "graphics/graphics.h"
+#include "solution/toolbox.h"
 
 namespace graphics {
 
@@ -22,8 +23,10 @@ namespace graphics {
 		 vector3_type& out_vertex,
 		 vector3_type& out_color)
 	{
-	    // >> ADD YOUR OWN MAGIC HERE <<
-	    out_vertex = in_vertex;
+		//std::cout << "In_vertex " << in_vertex << std::endl;
+		out_vertex = h2e( state.projection() * e2h( in_vertex ) );
+		
+		//std::cout << "Out_vertex " << out_vertex << std::endl;
 	    out_color =  in_color;
 	}
 
@@ -37,7 +40,7 @@ namespace graphics {
 		 vector3_type& out_color)
 	{
 	    // >> ADD YOUR OWN MAGIC HERE <<
-	    out_vertex = in_vertex;
+	    out_vertex = h2e( state.projection() * e2h( in_vertex ) );
 	    out_normal = in_normal;
 	    out_color =  in_color;
 	}

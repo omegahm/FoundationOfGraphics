@@ -12,195 +12,195 @@
 
 namespace graphics {
 
-    // Draws an edge from V1 to V2, or two edges - one from V1 to V2 and one from V2 to V3.
-    // Edges are assumed NOT to be horizontal!
-    template<typename math_types>
-    class MyEdgeRasterizer
-    {
-    public:
-	typedef typename math_types::real_type    real_type;
-	typedef typename math_types::vector3_type vector3_type;
-
-    public:
-	MyEdgeRasterizer() : valid(false)
+	// Draws an edge from V1 to V2, or two edges - one from V1 to V2 and one from V2 to V3.
+	// Edges are assumed NOT to be horizontal!
+	template<typename math_types>
+	class MyEdgeRasterizer
 	{
-	    std::cout << "MyEdgeRasterizer::MyEdgeRasterizer(): called" << std::endl;
-	}
+	public:
+		typedef typename math_types::real_type    real_type;
+		typedef typename math_types::vector3_type vector3_type;
 
-	virtual ~MyEdgeRasterizer()
-	{}
+	public:
+		MyEdgeRasterizer() : valid(false)
+		{
+			std::cout << "MyEdgeRasterizer::MyEdgeRasterizer(): called" << std::endl;
+		}
 
-	void init(vector3_type const& in_vertex1,
-		  vector3_type const& in_normal1,
-		  vector3_type const& in_color1,
-		  vector3_type const& in_vertex2,
-		  vector3_type const& in_normal2,
-		  vector3_type const& in_color2)
-        {
-	    std::cout << "edge_rasterizer::init(...) - One Edge" << std::endl;
-	    
-            this->vertices[0] = in_vertex1;
-            this->vertices[1] = in_vertex2;
+		virtual ~MyEdgeRasterizer()
+			{}
 
-	    this->two_edges = false;
-	    this->init_edge( 0, 1 );
-        }
-	
-	void init(vector3_type const& in_vertex1,
-		  vector3_type const& in_normal1,
-		  vector3_type const& in_color1,
-		  vector3_type const& in_vertex2,
-		  vector3_type const& in_normal2,
-		  vector3_type const& in_color2,
-		  vector3_type const& in_vertex3,
-		  vector3_type const& in_normal3,
-		  vector3_type const& in_color3)
-        {
-	    std::cout << "edge_rasterizer::init(...) - Two Edges" << std::endl;
-            this->vertices[0] = in_vertex1;
-            this->vertices[1] = in_vertex2;
-            this->vertices[2] = in_vertex3;
+		void init(vector3_type const& in_vertex1,
+			vector3_type const& in_normal1,
+			vector3_type const& in_color1,
+			vector3_type const& in_vertex2,
+			vector3_type const& in_normal2,
+			vector3_type const& in_color2)
+		{
+			std::cout << "edge_rasterizer::init(...) - One Edge" << std::endl;
 
-	    this->two_edges = true;
-            this->init_edge(0, 1);
-        }
-	
+			this->vertices[0] = in_vertex1;
+			this->vertices[1] = in_vertex2;
 
-	int x() const
-	{
-	    if (!this->valid) {
-		throw std::runtime_error("MyEdgeRasterizer::x():Invalid State/Not Initialized");
-            }
-	    return this->x_current;
-	}
+			this->two_edges = false;
+			this->init_edge( 0, 1 );
+		}
 
-	int y() const
-	{
-	    if (!this->valid) {
-		throw std::runtime_error("MyEdgeRasterizer::y():Invalid State/Not Initialized");
-            }
-	    return this->y_current;
-	}
+		void init(vector3_type const& in_vertex1,
+			vector3_type const& in_normal1,
+			vector3_type const& in_color1,
+			vector3_type const& in_vertex2,
+			vector3_type const& in_normal2,
+			vector3_type const& in_color2,
+			vector3_type const& in_vertex3,
+			vector3_type const& in_normal3,
+			vector3_type const& in_color3)
+		{
+			std::cout << "edge_rasterizer::init(...) - Two Edges" << std::endl;
+			this->vertices[0] = in_vertex1;
+			this->vertices[1] = in_vertex2;
+			this->vertices[2] = in_vertex3;
 
-	real_type depth() const
-	{
-	    if (!this->valid) {
-		throw std::runtime_error("MyEdgeRasterizer::depth():Invalid State/Not Initialized");
-            }
-	    return 0;
-	}
+			this->two_edges = true;
+			this->init_edge(0, 1);
+		}
 
-	vector3_type position() const
-        {
-            if (!this->valid) {
-                throw std::runtime_error("MyEdgeRasterizer::position():Invalid State/Not Initialized");
-            }
-            return vector3_type(this->x(), this->y(), this->depth());
-        }
 
-	vector3_type normal() const
-        {
-            if (!this->valid) {
-                throw std::runtime_error("MyEdgeRasterizer::normal():Invalid State/Not Initialized");
-            }
-            return vector3_type(0.0, 0.0, 0.0);
-        }
+		int x() const
+		{
+			if (!this->valid) {
+				throw std::runtime_error("MyEdgeRasterizer::x():Invalid State/Not Initialized");
+			}
+			return this->x_current;
+		}
 
-	vector3_type color() const
-        {
-            if (!this->valid) {
-                throw std::runtime_error("MyEdgeRasterizer::color():Invalid State/Not Initialized");
-            }
-            return vector3_type(0.0, 0.0, 0.0);
-        }
+		int y() const
+		{
+			if (!this->valid) {
+				throw std::runtime_error("MyEdgeRasterizer::y():Invalid State/Not Initialized");
+			}
+			return this->y_current;
+		}
 
-	void print_variables()
-        {
-	    std::cout << "MyEdgeRasterizer: local variables" << std::endl;
-	    std::cout << "=================================" << std::endl;
-	    std::cout << std::endl;
-	}
+		real_type depth() const
+		{
+			if (!this->valid) {
+				throw std::runtime_error("MyEdgeRasterizer::depth():Invalid State/Not Initialized");
+			}
+			return 0;
+		}
 
-	bool more_fragments() const
-	{
-	    return this->valid;
-	}
+		vector3_type position() const
+		{
+			if (!this->valid) {
+				throw std::runtime_error("MyEdgeRasterizer::position():Invalid State/Not Initialized");
+			}
+			return vector3_type(this->x(), this->y(), this->depth());
+		}
 
-	void next_fragment()
-        {
-	    this->y_current += this->y_step;
-            if( this->y_current >= this->y_stop ) {
-                if( !( this->two_edges ) ) {
-                    this->valid = false;
-                } else {
-                    this->init_edge( 1, 2 );
-                    this->two_edges = false;
-                }
-            } else {
-                this->update_edge();
-            }
-        }
+		vector3_type normal() const
+		{
+			if (!this->valid) {
+				throw std::runtime_error("MyEdgeRasterizer::normal():Invalid State/Not Initialized");
+			}
+			return vector3_type(0.0, 0.0, 0.0);
+		}
 
-    protected:
+		vector3_type color() const
+		{
+			if (!this->valid) {
+				throw std::runtime_error("MyEdgeRasterizer::color():Invalid State/Not Initialized");
+			}
+			return vector3_type(0.0, 0.0, 0.0);
+		}
 
-    private:
-        void init_edge( int vertex1, int vertex2 )
-        {
-            this->x_start       = this->vertices[vertex1][1];
-            this->y_start       = this->vertices[vertex1][2];
+		void print_variables()
+		{
+			std::cout << "MyEdgeRasterizer: local variables" << std::endl;
+			std::cout << "=================================" << std::endl;
+			std::cout << std::endl;
+		}
 
-	    this->x_stop        = this->vertices[vertex2][1];
-            this->y_stop        = this->vertices[vertex2][2];
+		bool more_fragments() const
+		{
+			return this->valid;
+		}
 
-            this->x_current     = this->x_start;
-            this->y_current     = this->y_start;
-            
-            int dx              = this->x_stop - this->x_start;
-            int dy              = this->y_stop - this->y_start;
+		void next_fragment()
+		{
+			this->y_current += this->y_step;
+			if( this->y_current >= this->y_stop ) {
+				if( !( this->two_edges ) ) {
+					this->valid = false;
+				} else {
+					this->init_edge( 1, 2 );
+					this->two_edges = false;
+				}
+			} else {
+				this->update_edge();
+			}
+		}
 
-            this->x_step        = ( dx < 0 ) ? -1 : 1;
-            this->y_step        = 1;
+	protected:
 
-            this->numerator     = std::abs( dx );
-            this->denominator   = dy;
-            this->accumulator   = ( this->x_step > 0 ) ? this->denominator : 1;
+	private:
+		void init_edge( int vertex1, int vertex2 )
+		{
+			this->x_start       = this->vertices[vertex1][1];
+			this->y_start       = this->vertices[vertex1][2];
 
-	    this->valid         = ( this->y_current < this->y_stop ); 
-        }
+			this->x_stop        = this->vertices[vertex2][1];
+			this->y_stop        = this->vertices[vertex2][2];
 
-        void update_edge() 
-        {
-            this->accumulator += this->numerator;
-            while( this->accumulator > this->denominator ) {
-                this->x_current   += this->x_step;
-                this->accumulator -= this->denominator;
-            }
-        }
-	
-	vector3_type vertices[3];
-	bool valid;
-	bool two_edges;
-	
-	int x_start;
-	int y_start;
+			this->x_current     = this->x_start;
+			this->y_current     = this->y_start;
 
-	int x_stop;
-	int y_stop;
+			int dx              = this->x_stop - this->x_start;
+			int dy              = this->y_stop - this->y_start;
 
-	int x_current;
-	int y_current;
+			this->x_step        = ( dx < 0 ) ? -1 : 1;
+			this->y_step        = 1;
 
-	int x_step;
-	int y_step;
+			this->numerator     = std::abs( dx );
+			this->denominator   = dy;
+			this->accumulator   = ( this->x_step > 0 ) ? this->denominator : 1;
 
-	int numerator;
-	int denominator;
-	int accumulator;
+			this->valid         = ( this->y_current < this->y_stop ); 
+		}
 
-        int prior_edge;
-        int next_edge;
+		void update_edge() 
+		{
+			this->accumulator += this->numerator;
+			while( this->accumulator > this->denominator ) {
+				this->x_current   += this->x_step;
+				this->accumulator -= this->denominator;
+			}
+		}
 
-    };
+		vector3_type vertices[3];
+		bool valid;
+		bool two_edges;
+
+		int x_start;
+		int y_start;
+
+		int x_stop;
+		int y_stop;
+
+		int x_current;
+		int y_current;
+
+		int x_step;
+		int y_step;
+
+		int numerator;
+		int denominator;
+		int accumulator;
+
+		int prior_edge;
+		int next_edge;
+
+	};
 
 }// end namespace graphics
 

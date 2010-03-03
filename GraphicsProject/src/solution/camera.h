@@ -5,6 +5,7 @@
 // Copyright (C) 2010 Department of Computer Science, University of Copenhagen
 //
 #include "graphics/graphics.h"
+#include "toolbox.h"
 
 namespace graphics {
     
@@ -25,6 +26,9 @@ namespace graphics {
 
 	/// The actual type of a vector3.
 	typedef typename math_types::vector3_type   vector3_type;
+	
+	// The actual type of a vector4
+	typedef typename math_types::vector4_type   vector4_type;
 
 	/// The actual type of a matrix4x4.
 	typedef typename math_types::matrix4x4_type matrix4x4_type;
@@ -35,10 +39,10 @@ namespace graphics {
 	 * Creates a Camera with a default (empty) state.
 	 */
 	MyCamera() : Camera<math_types>()
-	{}
+	{
+		
+	}
 	
-
-
 	/**
 	 * Destroys the Camera.
 	 */
@@ -65,6 +69,17 @@ namespace graphics {
 	    M[3][1] = 0, M[3][2] = 0, M[3][3] = 1, M[3][4] = 0; 
 	    M[4][1] = 0, M[4][2] = 0, M[4][3] = 0, M[4][4] = 1;
 
+		// Translate VRP to origin
+		M = translate( -vrp ) * M;
+		
+		// Rotate so (u,v,n) == (X,Y,Z)
+		vector3_type Rx, Ry, Rz;
+		Rz = vpn / Norm( vpn );
+		Rx = Cross( vup, Rz ) / Norm( Cross( vup, Rz ) );
+		Ry = Cross( Rz, Rx );
+		
+		M = rotate( Rx, Ry, Rz ) * M;
+		
 	    return M;
 	}
 
@@ -84,12 +99,30 @@ namespace graphics {
 						      real_type    const& front_plane,
 						      real_type    const& back_plane)
         {
-	    matrix4x4_type M;    // The identity matrix.
-	    M[1][1] = 1, M[1][2] = 0, M[1][3] = 0, M[1][4] = 0;
-	    M[2][1] = 0, M[2][2] = 1, M[2][3] = 0, M[2][4] = 0; 
-	    M[3][1] = 0, M[3][2] = 0, M[3][3] = 1, M[3][4] = 0; 
-	    M[4][1] = 0, M[4][2] = 0, M[4][3] = 0, M[4][4] = 1;
+		matrix4x4_type M;    // The identity matrix.
+		M[1][1] = 1, M[1][2] = 0, M[1][3] = 0, M[1][4] = 0;
+		M[2][1] = 0, M[2][2] = 1, M[2][3] = 0, M[2][4] = 0; 
+		M[3][1] = 0, M[3][2] = 0, M[3][3] = 1, M[3][4] = 0; 
+		M[4][1] = 0, M[4][2] = 0, M[4][3] = 0, M[4][4] = 1;
 
+	    // Translate PRP to origin
+		M = translate( -prp ) * M;
+
+	    // We need the Direction of Projection
+	    // To calculate this, we need the Center of the Window
+		vector2_type cw( ( upper_right[1] + lower_left[1] ) / 2, 
+						 ( upper_right[2] + lower_left[2] ) / 2 );
+		vector3_type dop( prp - vector3_type( cw[1], cw[2], 0 ) );
+
+	    // Shear the eye_coordinate system into place
+		M = xy_shear( -( dop[1] / dop[3] ), -( dop[2] / dop[3] ) ) * M;
+		
+		// Scale so we have dimensions [-1, 1] x [-1, 1] x [0, -1]
+		real_type sx = -2 * prp[3] / ( ( upper_right[1] - lower_left[1]  ) * ( back_plane - prp[3] ) );
+		real_type sy = -2 * prp[3] / ( ( upper_right[2] - lower_left[2]  ) * ( back_plane - prp[3] ) );
+		real_type sz = -1 / ( back_plane - prp[3] );
+		M = scale( vector3_type( sx, sy, sz ) ) * M;
+	    
 	    return M;
 	}
 
@@ -117,17 +150,39 @@ namespace graphics {
 						 real_type    const& front_plane,
 						 real_type    const& back_plane)
 	{
-	    // ToDo add your magic here!
-
 	    matrix4x4_type M;    // The identity matrix.
 	    M[1][1] = 1, M[1][2] = 0, M[1][3] = 0, M[1][4] = 0;
 	    M[2][1] = 0, M[2][2] = 1, M[2][3] = 0, M[2][4] = 0; 
 	    M[3][1] = 0, M[3][2] = 0, M[3][3] = 1, M[3][4] = 0; 
 	    M[4][1] = 0, M[4][2] = 0, M[4][3] = 0, M[4][4] = 1;
 
-	    return M;
+		// We convert our world to eye-coordinates
+		M = compute_view_orientation_matrix( vrp, vpn, vup ) * M;
+		
+		// We then convert to the canonical view volume
+		M = compute_view_projection_matrix( prp, lower_left, upper_right, front_plane, back_plane ) * M;
+		
+ 	    return M;
 	}
-    };
+	
+	matrix4x4_type compute_window_viewport() 
+	{
+		std::cout << "Height: " << winHeight << " Width: " << winWidth << std::endl;
+		matrix4x4_type M;    // The identity matrix.
+	    M[1][1] = 1, M[1][2] = 0, M[1][3] = 0, M[1][4] = 0;
+	    M[2][1] = 0, M[2][2] = 1, M[2][3] = 0, M[2][4] = 0; 
+	    M[3][1] = 0, M[3][2] = 0, M[3][3] = 1, M[3][4] = 0; 
+	    M[4][1] = 0, M[4][2] = 0, M[4][3] = 0, M[4][4] = 1;
+
+		// Last, but not least, we need to convert to the window view port (Foley 6.5.5)
+		M = translate( vector3_type( 1, 1, 1 ) ) * M;
+		M = scale( vector3_type( ( winHeight ) / 2, ( winWidth ) / 2, 1) ) * M;
+		M = translate( vector3_type( 0, 0, 0 ) ) * M;
+		
+		return M;
+	}
+		
+};
 
 }// end namespace graphics
 

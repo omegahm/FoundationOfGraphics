@@ -202,11 +202,6 @@ namespace graphics
 	real_type&       fall_off ()       { m_fall_off; }
 
 
-
-	// Should be changed from < to >= by kaiip 06.12.2008 - 00:44
-	// But it has many consequences - so for now, I just leave it as is!
-	// This is the original
-
 	/**
 	 * The Z-buffer test.
 	 * Maybe it should be changed from < to >= by kaiip 06.12.2008 - 00:44
