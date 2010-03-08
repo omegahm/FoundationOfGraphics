@@ -68,7 +68,7 @@ namespace graphics
 			    real_type    const& front_plane,
 			    real_type    const& back_plane)
 	{
-	    /*this->m_state->view_orientation() = this->compute_view_orientation_matrix(vrp, vpn, vup);
+	    this->m_state->view_orientation() = this->compute_view_orientation_matrix(vrp, vpn, vup);
 
 	    this->m_state->view_projection()  = this->compute_view_projection_matrix(prp,
 										     lower_left,
@@ -76,25 +76,12 @@ namespace graphics
 										     front_plane,
 										     back_plane);
 
-	    matrix4x4_type M;
-	    M = this->m_state->view_projection() * this->m_state->view_orientation();
+		this->m_state->window_viewport() = this->compute_window_viewport();
 
-	    this->m_state->projection() = M;*/
-	
-		matrix4x4_type M;
-		M = this->compute_projection_matrix( vrp, 
-		                                     vpn, 
-		                                     vup, 
-		                                     prp, 
-		                                     lower_left, 
-		                                     upper_right, 
-		                                     front_plane, 
-		                                     back_plane );
-		
-		std::cout << "compute_projection_matrix " << M << std::endl;
-		
-		M = this->compute_window_viewport() * M;	
-		this->m_state->projection() = M;
+	    matrix4x4_type M;
+	    M = this->m_state->window_viewport() * this->m_state->view_projection() * this->m_state->view_orientation();
+
+	    this->m_state->projection() = M;
 	}
       
 	/**

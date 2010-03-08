@@ -112,7 +112,7 @@ namespace graphics {
 	    // To calculate this, we need the Center of the Window
 		vector2_type cw( ( upper_right[1] + lower_left[1] ) / 2, 
 						 ( upper_right[2] + lower_left[2] ) / 2 );
-		vector3_type dop( prp - vector3_type( cw[1], cw[2], 0 ) );
+		vector3_type dop( prp - vector3_type( cw[1], cw[2], 1 ) );
 
 	    // Shear the eye_coordinate system into place
 		M = xy_shear( -( dop[1] / dop[3] ), -( dop[2] / dop[3] ) ) * M;
@@ -122,7 +122,18 @@ namespace graphics {
 		real_type sy = -2 * prp[3] / ( ( upper_right[2] - lower_left[2]  ) * ( back_plane - prp[3] ) );
 		real_type sz = -1 / ( back_plane - prp[3] );
 		M = scale( vector3_type( sx, sy, sz ) ) * M;
-	    
+		
+		// We create the transformation from parallel to perpective projection
+		real_type zmax( - ( ( front_plane - prp[3] ) / ( back_plane - prp[3] ) ) );
+
+		matrix4x4_type P;    // Equation 6.3 from Foley et. al.
+	    P[1][1] = 1, P[1][2] = 0, P[1][3] =                 0, P[1][4] =                    0;
+	    P[2][1] = 0, P[2][2] = 1, P[2][3] =                 0, P[2][4] =                    0; 
+	    P[3][1] = 0, P[3][2] = 0, P[3][3] =  1 / ( 1 + zmax ), P[3][4] = -zmax / ( 1 + zmax ); 
+	    P[4][1] = 0, P[4][2] = 0, P[4][3] =                -1, P[4][4] =                    0;	    
+		
+		M = P * M;
+
 	    return M;
 	}
 
@@ -167,17 +178,15 @@ namespace graphics {
 	
 	matrix4x4_type compute_window_viewport() 
 	{
-		std::cout << "Height: " << winHeight << " Width: " << winWidth << std::endl;
 		matrix4x4_type M;    // The identity matrix.
 	    M[1][1] = 1, M[1][2] = 0, M[1][3] = 0, M[1][4] = 0;
 	    M[2][1] = 0, M[2][2] = 1, M[2][3] = 0, M[2][4] = 0; 
 	    M[3][1] = 0, M[3][2] = 0, M[3][3] = 1, M[3][4] = 0; 
 	    M[4][1] = 0, M[4][2] = 0, M[4][3] = 0, M[4][4] = 1;
-
+				
 		// Last, but not least, we need to convert to the window view port (Foley 6.5.5)
 		M = translate( vector3_type( 1, 1, 1 ) ) * M;
-		M = scale( vector3_type( ( winHeight ) / 2, ( winWidth ) / 2, 1) ) * M;
-		M = translate( vector3_type( 0, 0, 0 ) ) * M;
+		M = scale( vector3_type( ( winWidth ) / 2, ( winHeight ) / 2, 1) ) * M;
 		
 		return M;
 	}

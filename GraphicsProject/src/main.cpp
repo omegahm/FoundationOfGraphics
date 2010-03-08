@@ -16,7 +16,7 @@
 #define DEBUGLINES        1
 #define DRAWTRIANGLES     1
 #define DEBUGTRIANGLES    1
-#define COORDINATE_SYSTEM 1
+#define COORDINATE_SYSTEM 0
 
 
 /*******************************************************************\
@@ -92,6 +92,7 @@ int winHeight = 768;
 #include "solution/math_types.h"
 #include "solution/camera.h"
 #include "solution/vertex_program.h"
+#include "solution/flat_vertex_program.h"
 #include "solution/fragment_program.h"
 
 /*******************************************************************\
@@ -105,6 +106,7 @@ using namespace graphics;
 MyCamera<MyMathTypes>             camera;
 RenderPipeline<MyMathTypes>       render_pipeline;
 MyVertexProgram<MyMathTypes>      vertex_program;
+FlatVertexProgram<MyMathTypes>	  flat_vertex_program;
 MyFragmentProgram<MyMathTypes>    fragment_program;
 
 LinearInterpolator<MyMathTypes, MyMathTypes::vector3_type> linear_interpolator;
@@ -123,12 +125,15 @@ MyTriangleRasterizer<MyMathTypes> triangle_rasterizer;
 *                                                                   *
 \*******************************************************************/
 
-MyMathTypes::vector3_type cblack( 0.0, 0.0, 0.0 );
-MyMathTypes::vector3_type cwhite( 1.0, 1.0, 1.0 );
-MyMathTypes::vector3_type cred(1.0, 0.0, 0.0);
-MyMathTypes::vector3_type cgreen(0.0, 1.0, 0.0);
-MyMathTypes::vector3_type cblue(0.0, 0.0, 1.0);
-MyMathTypes::vector3_type cyellow(255.0 / 255.0, 245.0 / 255.0, 6.0 / 255.0);
+MyMathTypes::vector3_type cblack   ( 0.0, 0.0, 0.0 );
+MyMathTypes::vector3_type cwhite   ( 1.0, 1.0, 1.0 );
+MyMathTypes::vector3_type cred     ( 1.0, 0.0, 0.0 );
+MyMathTypes::vector3_type cgreen   ( 0.0, 1.0, 0.0 );
+MyMathTypes::vector3_type cblue    ( 0.0, 0.0, 1.0 );
+MyMathTypes::vector3_type cyellow  ( 1.0, 1.0, 0.0 );
+MyMathTypes::vector3_type ccyan    ( 0.0, 1.0, 1.0 );
+MyMathTypes::vector3_type cmagenta ( 1.0, 0.0, 1.0 );
+
 
 
 /*******************************************************************\
@@ -139,8 +144,6 @@ MyMathTypes::vector3_type cyellow(255.0 / 255.0, 245.0 / 255.0, 6.0 / 255.0);
 
 void DrawGrid()
 {
-    MyMathTypes::vector3_type cblack(0.0, 0.0, 0.0);
-
     render_pipeline.unit_length(UnitLength);
     render_pipeline.draw_grid(XSpacing, YSpacing, cblack);
     render_pipeline.unit_length(1);
@@ -155,7 +158,8 @@ void DrawGrid()
 
 void DrawPoint()
 {
-    render_pipeline.load_rasterizer(point_rasterizer);
+	render_pipeline.load_vertex_program( flat_vertex_program );
+    render_pipeline.load_rasterizer( point_rasterizer );
 
     // Do the fun stuff here
 
@@ -215,6 +219,7 @@ void DebugPoint()
     XSpacing   = 1;
     YSpacing   = 1;
 
+	render_pipeline.load_vertex_program( flat_vertex_program );
     render_pipeline.load_rasterizer(point_rasterizer);
     render_pipeline.DebugOn();
     render_pipeline.unit_length(UnitLength);
@@ -296,6 +301,7 @@ void DrawLines()
     MyMathTypes::vector3_type  l5(  200.0, 100.0, 0.0 );
     MyMathTypes::vector3_type  l6(  100.0, 200.0, 0.0 );
 
+	render_pipeline.load_vertex_program( flat_vertex_program );
     render_pipeline.load_rasterizer( line_rasterizer );
 
     render_pipeline.draw_line( l0, cwhite, l1, cwhite );
@@ -426,6 +432,7 @@ void DebugLines()
     XSpacing   = 1;
     YSpacing   = 1;
 
+	render_pipeline.load_vertex_program( flat_vertex_program );
     render_pipeline.load_rasterizer(line_rasterizer);
 
     render_pipeline.DebugOn();
@@ -457,6 +464,7 @@ void DrawTriangles()
 {
     // TestProgram: It tests drawing of triangles.
 
+	render_pipeline.load_vertex_program( flat_vertex_program );
     render_pipeline.load_rasterizer( triangle_rasterizer );
 
 #ifdef NEWTRIANGLES
@@ -725,6 +733,7 @@ void DebugTriangles()
     XSpacing   = 1;
     YSpacing   = 1;
 
+	render_pipeline.load_vertex_program( flat_vertex_program );
     render_pipeline.load_rasterizer(triangle_rasterizer);
     render_pipeline.DebugOn();
     render_pipeline.unit_length(UnitLength);
@@ -810,28 +819,40 @@ void DrawHouse()
 
     // Draw the front wall
     for (int i = 1; i < NFrontWallVertices; ++i) {
-	render_pipeline.draw_line( FrontWall[i-1], cwhite,
-				   FrontWall[i], cwhite );
+		render_pipeline.draw_line( FrontWall[i-1], cwhite,
+				   				   FrontWall[i], cwhite );
     }
     render_pipeline.draw_line( FrontWall[NFrontWallVertices-1], cwhite, 
-			       FrontWall[0], cwhite );
+			       			   FrontWall[0], cwhite );
 
     // Draw the back wall
     for (int i = 1; i < NBackWallVertices; ++i) {
-	render_pipeline.draw_line(BackWall[i-1], cblue, 
-				  BackWall[i], cblue );
+		render_pipeline.draw_line(BackWall[i-1], cblue, 
+				  				  BackWall[i], cblue );
     }
     render_pipeline.draw_line( BackWall[NBackWallVertices-1], cblue, 
-			       BackWall[0], cblue );
+			       		       BackWall[0], cblue );
 
     // Draw the side walls
     for (int i = 0; i < NFrontWallVertices; ++i) {
-	render_pipeline.draw_line( FrontWall[i], cgreen, 
-				   BackWall[i], cgreen );
+		render_pipeline.draw_line( FrontWall[i], cgreen, 
+				   				   BackWall[i], cgreen );
     }
+
+	#if COORDINATE_SYSTEM
+	vector3_type x     ( 100, 0,     0);
+	vector3_type y     (   0, 100,   0);
+	vector3_type z     (   0,   0, 100);
+	vector3_type origin(   0,   0,   0);
+
+	render_pipeline.draw_line( origin, cyellow,  x, cyellow  );
+	render_pipeline.draw_line( origin, ccyan,    y, ccyan    );
+	render_pipeline.draw_line( origin, cmagenta, z, cmagenta );
+	#endif
 
     // Reset the framebuffer resolution to the original values
     render_pipeline.set_resolution(winWidth, winHeight);
+	std::cout << camera.get_projection() << std::endl;
     //camera.reset();
 }
 
@@ -863,7 +884,8 @@ void Foley_Fig_6_27()
     camera.set_projection(vrp, vpn, vup, prp,
 			  lower_left, upper_right,
 			  front_plane, back_plane);
-
+	
+	
     DrawHouse();
 }
 

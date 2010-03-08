@@ -15,6 +15,7 @@ namespace graphics {
     public:
 	typedef typename VertexProgram<math_types>::graphics_state_type  graphics_state_type;
 	typedef typename math_types::vector3_type                        vector3_type;
+	typedef typename math_types::vector4_type						 vector4_type; 
 
     public:
 	void run(graphics_state_type const& state,
@@ -23,10 +24,7 @@ namespace graphics {
 		 vector3_type& out_vertex,
 		 vector3_type& out_color)
 	{
-		//std::cout << "In_vertex " << in_vertex << std::endl;
 		out_vertex = h2e( state.projection() * e2h( in_vertex ) );
-		
-		//std::cout << "Out_vertex " << out_vertex << std::endl;
 	    out_color =  in_color;
 	}
 
@@ -39,7 +37,6 @@ namespace graphics {
 		 vector3_type& out_normal,
 		 vector3_type& out_color)
 	{
-	    // >> ADD YOUR OWN MAGIC HERE <<
 	    out_vertex = h2e( state.projection() * e2h( in_vertex ) );
 	    out_normal = in_normal;
 	    out_color =  in_color;

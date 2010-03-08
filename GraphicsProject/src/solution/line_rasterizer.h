@@ -412,7 +412,7 @@ namespace graphics {
 
 	int	     d;
 
-	bool	     left_right;
+	bool	 left_right;
     };
 
 }// end namespace graphics

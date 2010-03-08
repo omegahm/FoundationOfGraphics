@@ -20,7 +20,8 @@ namespace graphics {
 		 */
 		vector3_type h2e(vector4_type vector)
 		{
-			if( vector[4] == 0) {
+			if( vector[4] <= 0) {
+				std::cout << "W = " << vector[4] << std::endl;
 				throw std::runtime_error("Toolbox::h2e():Can't divide by zero");
 			}
 			
